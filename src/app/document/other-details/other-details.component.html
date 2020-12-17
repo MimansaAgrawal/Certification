@@ -1,0 +1,177 @@
+<!-- other Detail form start -->
+<div class="card m-3 justify-content-center upload-doc-card">
+  <!-- Card Heading -->
+  <h5 class="card-header upload-doc-card-header">3) Other Details</h5>
+  <!-- Card body -->
+  <div class="card-body">
+
+    <form [formGroup]="documentService.otherDetailsForm">
+
+      <div class="row">
+
+        <!-- experiment search -->
+        <!-- (onSelect)="onItemSelect($event)" -->
+        <div class="col-md-6 col-12 top-margin">
+          <div class="form-group col-md-11">
+            <label for="technicalSkillSets">Technical Skills<span class = "required">*</span></label>
+            <!-- <input type="text" class="form-control" id="skills" formControlName="skills"> -->
+            <ng-multiselect-dropdown class="multiselect-dropdown " id="technicalSkillSets"
+              [placeholder]="'Select 5 Skills'" [data]="skills" formControlName="technicalSkillSets"
+              [disabled]="disabled" [settings]="dropdownSettings"
+              [ngClass]="{'text-danger':documentService.otherDetailsForm.get('technicalSkillSets').errors
+              && (documentService.otherDetailsForm.get('technicalSkillSets').touched|| documentService.otherDetailsForm.get('technicalSkillSets').errors) }">
+            </ng-multiselect-dropdown>
+            <span class=" text-danger"
+              *ngIf="documentService.otherDetailsForm.get('technicalSkillSets').errors
+          && (documentService.otherDetailsForm.get('technicalSkillSets').touched|| documentService.otherDetailsForm.get('technicalSkillSets').dirty)">
+              <span *ngIf="documentService.otherDetailsForm.get('technicalSkillSets').errors.required">
+                5 Skills are required
+              </span>
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-6 col-12 top-margin">
+          <div class="form-group col-md-11">
+            <label for="linkedInUrl">Linkedin link</label>
+            <input type="text" class="form-control" id="linkedInUrl" formControlName="linkedInUrl"
+              [ngClass]="{'is-invalid':documentService.otherDetailsForm.get('linkedInUrl').errors
+            && (documentService.otherDetailsForm.get('linkedInUrl').touched|| documentService.otherDetailsForm.get('linkedInUrl').dirty) }">
+            <span class=" text-danger"
+              *ngIf="documentService.otherDetailsForm.get('linkedInUrl').errors
+          && (documentService.otherDetailsForm.get('linkedInUrl').touched|| documentService.otherDetailsForm.get('linkedInUrl').dirty)">
+              <span *ngIf="documentService.otherDetailsForm.get('linkedInUrl').errors.required
+            || documentService.otherDetailsForm.get('linkedInUrl').errors?.whitespace
+            ">
+                LinkedIn Url is required
+              </span>
+            </span>
+            <span class=" text-danger" *ngIf="documentService.otherDetailsForm.get('linkedInUrl').errors?.pattern">
+              LinkedIn Url ex: https://www.linkedin.com/in/abcd
+            </span>
+
+          </div>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-md-6 col-12 top-margin">
+          <div class="form-group col-md-11">
+            <label for="hobbies">Hobbies<span class = "required">*</span></label>
+            <!-- <input type="text" class="form-control" id="hobbies" formControlName="hobbies"
+              [ngClass]="{'is-invalid':documentService.otherDetailsForm.get('hobbies').errors
+          && (documentService.otherDetailsForm.get('hobbies').touched|| documentService.otherDetailsForm.get('hobbies').dirty) }"> -->
+            <span class=" text-danger"
+              *ngIf="documentService.otherDetailsForm.get('hobbies').errors
+          && (documentService.otherDetailsForm.get('hobbies').touched|| documentService.otherDetailsForm.get('hobbies').dirty)">
+              <span *ngIf="documentService.otherDetailsForm.get('hobbies').errors.required
+            || documentService.otherDetailsForm.get('hobbies').errors?.whitespace
+            ">
+                Hobbies are required
+              </span>
+            </span>
+            <span class=" text-danger" *ngIf="documentService.otherDetailsForm.get('hobbies').errors?.pattern">
+              Hobbies must contain only letters.
+            </span>
+            <tag-input formControlName="hobbies" [modelAsStrings]="true"></tag-input>
+            <!-- <span  class=" text-danger" *ngIf ="documentService.otherDetailsForm.get('hobbies').errors?.minlength ||
+          documentService.otherDetailsForm.get('hobbies').errors?.maxlength
+          ">
+          Hobbies must be greater than 2 characters and less than 30 characters
+          </span> -->
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-12 top-margin">
+          <div class="form-group col-md-11">
+            <label for="lastCollegeAttended">Last College, University attended<span class = "required">*</span></label>
+            <input type="text" class="form-control" id="lastCollegeAttended" formControlName="lastCollegeAttended"
+              [ngClass]="{'is-invalid':documentService.otherDetailsForm.get('lastCollegeAttended').errors
+            && (documentService.otherDetailsForm.get('lastCollegeAttended').touched|| documentService.otherDetailsForm.get('lastCollegeAttended').dirty) }">
+            <span class=" text-danger"
+              *ngIf="documentService.otherDetailsForm.get('lastCollegeAttended').errors
+            && (documentService.otherDetailsForm.get('lastCollegeAttended').touched|| documentService.otherDetailsForm.get('lastCollegeAttended').dirty)">
+              <span *ngIf="documentService.otherDetailsForm.get('lastCollegeAttended').errors.required
+            || documentService.otherDetailsForm.get('lastCollegeAttended').errors?.whitespace
+            ">
+                This field is required
+              </span>
+            </span>
+            <span class=" text-danger"
+              *ngIf="documentService.otherDetailsForm.get('lastCollegeAttended').errors?.pattern">
+              Last College Attended must contain only letters.
+            </span>
+            <!-- <span  class=" text-danger" *ngIf ="documentService.otherDetailsForm.get('lastCollegeAttended').errors?.minlength ||
+            documentService.otherDetailsForm.get('lastCollegeAttended').errors?.maxlength
+            ">
+          Last College Attended must be greater than 2 characters and less than 30 characters
+          </span> -->
+
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf = "!isFresher">
+        <div class="col-md-6 col-12 top-margin">
+          <div class="form-group col-md-11" >
+            <label for="overallWorkExperienceInYears">Overall Work experience in years<span
+                class = "required">*</span></label>
+            <input type="text" class="form-control" id="overallWorkExperienceInYears"
+              formControlName="overallWorkExperienceInYears"
+              [ngClass]="{'is-invalid':documentService.otherDetailsForm.get('overallWorkExperienceInYears').errors
+            && (documentService.otherDetailsForm.get('overallWorkExperienceInYears').touched|| documentService.otherDetailsForm.get('overallWorkExperienceInYears').dirty) }">
+            <span class=" text-danger"
+              *ngIf="documentService.otherDetailsForm.get('overallWorkExperienceInYears').errors
+            && (documentService.otherDetailsForm.get('overallWorkExperienceInYears').touched|| documentService.otherDetailsForm.get('overallWorkExperienceInYears').dirty)">
+              <span *ngIf="documentService.otherDetailsForm.get('overallWorkExperienceInYears').errors.required">
+                This Field is required
+              </span>
+            </span>
+            <span class=" text-danger"
+              *ngIf="documentService.otherDetailsForm.get('overallWorkExperienceInYears').errors?.pattern">
+              Overall Work experience must be numbers only.
+            </span>
+            <!-- <span  class=" text-danger" *ngIf ="documentService.otherDetailsForm.get('overallWorkExperienceInYears').errors?.minlength ||
+          documentService.otherDetailsForm.get('overallWorkExperienceInYears').errors?.maxlength
+          ">
+          Overall Work experience must be greater than 1 number and not more than 2
+          </span> -->
+          </div>
+        </div>
+
+        <div class="col-md-6 col-12 top-margin">
+          <div class="form-group col-md-11">
+            <label for="lastOrganisationWorkedAt">Last organization that you worked with<span
+                class = "required">*</span></label>
+            <input type="text" class="form-control" id="lastOrganisationWorkedAt"
+              formControlName="lastOrganisationWorkedAt"
+              [ngClass]="{'is-invalid':documentService.otherDetailsForm.get('lastOrganisationWorkedAt').errors
+          && (documentService.otherDetailsForm.get('lastOrganisationWorkedAt').touched|| documentService.otherDetailsForm.get('lastOrganisationWorkedAt').dirty) }">
+            <span class=" text-danger"
+              *ngIf="documentService.otherDetailsForm.get('lastOrganisationWorkedAt').errors
+        && (documentService.otherDetailsForm.get('lastOrganisationWorkedAt').touched|| documentService.otherDetailsForm.get('lastOrganisationWorkedAt').dirty)">
+              <span *ngIf="documentService.otherDetailsForm.get('lastOrganisationWorkedAt').errors.required
+            || documentService.otherDetailsForm.get('lastOrganisationWorkedAt').errors?.whitespace
+            ">
+                This Field is required
+              </span>
+            </span>
+            <span class=" text-danger"
+              *ngIf="documentService.otherDetailsForm.get('lastOrganisationWorkedAt').errors?.pattern">
+              Last Organisation At must contain only letters.
+            </span>
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+
+    </form>
+  </div>
+</div>
+<!-- other Detail form end -->

@@ -1,0 +1,196 @@
+<div class="header-margin-bottom">
+  <common-header *ngIf = "add" [heading]="'ADD NEW EMPLOYEE'"></common-header>
+  <common-header *ngIf = "!add" [heading]="'UPDATE EMPLOYEE DATA'"></common-header>
+</div>
+<mat-card class="white-card">
+  <div class="wrapper top-padding" class="fit-content">
+    <form [formGroup]="signupForm">
+      <div class="myRow">
+        <!-- Input field for Name -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">NAME</div>
+
+          <input formControlName="name" id="name" type="text" class="input input-shadow" placeholder="Name" />
+
+          <div *ngIf="f.name.touched && f.name.invalid" class="alertmsg">
+            
+            <div *ngIf="f.name.errors.required" class="req">
+              Name is required.
+            </div>
+
+            <div *ngIf="f.name.errors.pattern" class="req">
+              Please, Enter Valid Name.
+            </div>
+          </div>
+        </div>
+
+        <!-- input field for date of joining  -->
+
+        <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+          <div class="input-heading">DATE OF JOINING</div>
+
+          <input *ngIf="add" formControlName="dateOfJoining" id="dateOfJoining" type="date" class="input input-shadow"
+            min="{{ today }}" />
+
+          <input *ngIf="!add" formControlName="dateOfJoining" id="dateOfJoining" type="date" class="input form-control"
+            min="{{ today }}" [(ngModel)]="fillDate" />
+
+          <div *ngIf="f.dateOfJoining.touched && f.dateOfJoining.invalid" class="alertmsg">
+            <div *ngIf="f.dateOfJoining.errors.required" class="req">
+              Date is required.
+            </div>
+          </div>
+        </div>
+
+        <!-- input field for mobile number -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">PHONE NUMBER</div>
+          <input formControlName="phoneNumber" id="phoneNumber" type="text" class="input input-shadow"
+            placeholder="Phone Number" maxlength="10" />
+
+          <div *ngIf="f.phoneNumber.touched && f.phoneNumber.invalid" class="alertmsg">
+            <div *ngIf="f.phoneNumber.errors.required" class="req">
+              Mobile Number is required.
+            </div>
+
+            <div *ngIf="f.phoneNumber.errors.pattern" class="req">
+              Please Enter valid Mobile Number.
+            </div>
+          </div>
+        </div>
+
+        <!-- input field for offer release date -->
+
+        <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+          <div class="input-heading">OFFER RELEASE DATE</div>
+
+          <input *ngIf="add" formControlName="dateOfOffer" id="dateOfOffer" type="date" class="input input-shadow" />
+
+          <input *ngIf="!add" formControlName="dateOfOffer" id="dateOfOffer" type="date" class="input input-shadow"
+           [(ngModel)]="fillOfferDate" />
+
+          <div *ngIf="f.dateOfJoining.touched && f.dateOfJoining.invalid" class="alertmsg">
+            <div *ngIf="f.dateOfJoining.errors.required" class="req">
+              Date is required.
+            </div>
+          </div>
+        </div>
+
+        <!-- Input field for email -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">EMAIL</div>
+
+          <input formControlName="email" id="email" type="text" class="input input-shadow" placeholder="Email" />
+
+          <div *ngIf="f.email.touched && f.email.invalid" class="alertmsg">
+            <div *ngIf="f.email.errors.required" class="req">
+              Email is required.
+            </div>
+
+            <div *ngIf="f.email.errors.email" class="req">
+              Please, enter valid email address.
+            </div>
+          </div>
+        </div>
+
+        <!-- input field for Experience -->
+        <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+          <div class="input-heading">EXPERIENCE</div>
+
+          <div>
+            <mat-radio-group aria-label="Select an option" formControlName="experienceStatus" class="left-margin"
+              >
+              <mat-radio-button value="f" (change)="changeRadio($event.value); resetDesignation();">Fresher</mat-radio-button>
+              <mat-radio-button value="l" (change)="changeRadio($event.value); resetDesignation();">Lateral</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div *ngIf="f.experienceStatus.touched && f.experienceStatus.invalid" class="alertmsg">
+            <div *ngIf="f.experienceStatus.errors.required" class="req">
+              Experience is required.
+            </div>
+          </div>
+        </div>
+
+        <!-- Input field for profile stakeholder -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">PROFILE STAKEHOLDER</div>
+
+          <div class="box input-shadow dropdown">
+            <ngx-select-dropdown formControlName="profileStakeHolder" [multiple]="false" [config]="config" [options]="profileStakeholderArray"
+              >
+            </ngx-select-dropdown>
+          </div>
+          <div *ngIf="f.profileStakeHolder.touched && f.profileStakeHolder.invalid" class="alertmsg">
+            <div *ngIf="f.profileStakeHolder.errors.required" class="req">
+              Profile stakeholder is required.
+            </div>
+
+
+          </div>
+        </div>
+
+        <!-- input field for designation -->
+
+        <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+          <div class="input-heading">DESIGNATION</div>
+
+          <div class="box input-shadow dropdown">
+            <ngx-select-dropdown formControlName="designation" [multiple]="false" [config]="config" [options]="Designation"
+              >
+            </ngx-select-dropdown>
+          </div>
+        </div>
+
+        <!-- input filed for profile -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">PROFILE</div>
+
+          <input formControlName="profile" id="profile" type="text" class="input input-shadow" placeholder="Profile" />
+
+          <div *ngIf="f.profile.touched && f.profile.invalid" class="alertmsg">
+            <div *ngIf="f.profile.errors.required" class="req">
+              Profile is required.
+            </div>
+
+            <div *ngIf="f.profile.errors.pattern" class="req">
+              Please, Enter Valid Stakeholder Name.
+            </div>
+          </div>
+        </div>
+
+        <!-- input field for Address -->
+
+        <!-- input field for hr -->
+
+        <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+          <div class="input-heading">HR</div>
+
+          <div class="box input-shadow dropdown">
+            <ngx-select-dropdown formControlName="hrSpoc" [multiple]="false" [config]="config" [options]="allHr"
+              >
+            </ngx-select-dropdown>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="add" class="text-center">
+        <button [ngClass]="{'not-allowed' : !signupForm.valid}" class=" text-center  button button-margin-bottom" type="submit" (click)="submit()" [disabled]="!signupForm.valid">
+          ADD
+        </button>
+       
+      </div>
+      <div *ngIf="!add" class="text-center">
+        <button [ngClass]="{'not-allowed' : !signupForm.valid}" class="text-center button button-margin-bottom" type="submit" (click)="submit()" [disabled]="!signupForm.valid">
+          UPDATE
+        </button>
+      
+      </div>
+    </form>
+  </div>
+</mat-card>

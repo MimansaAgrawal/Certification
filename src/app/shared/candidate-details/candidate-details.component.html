@@ -1,0 +1,37 @@
+<div *ngIf = "fullData" class="wrapper top-padding">
+  <div class = "myRow">
+          <div class = "col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class = "input-heading">NAME</div>
+            <input type="text" class = "input input-shadow disabled" readonly="readonly" value={{fullData.candidateDetails.name.fullName}} disabled />
+          </div>
+
+          <div class = "col-md-4 offset-md-2 offset-1 col-10 top-margin">
+            <div class = "input-heading">DATE OF JOINING</div>
+            <input type="text" class = "input input-shadow disabled" readonly="readonly" value="{{fullData.candidateDetails.doj | date : 'dd/MM/yyyy'}}" disabled />
+          </div>
+        
+          <div class = "col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class = "input-heading">DESIGNATION</div>
+            <input type="text" class = "input input-shadow disabled" readonly="readonly" value={{fullData.candidateDetails.designation.name}} disabled />
+          </div>
+
+          <div class = "col-md-4 offset-md-2 offset-1 col-10 top-margin">
+            <div class = "input-heading">PROFILE</div>
+            <input type="text" class = "input input-shadow disabled" readonly="readonly" value={{fullData.candidateDetails.profile}} disabled />
+          </div>
+        
+          <div class = "col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class = "input-heading">DATE OF OFFER</div>
+            <input type="text" class = "input input-shadow disabled" readonly="readonly" value="{{fullData.candidateDetails.offerDate | date : 'dd/MM/yyyy'}}" disabled />
+          </div>
+
+          <div class = "col-md-4 offset-md-2 offset-1 col-10 top-margin">
+            <div class = "input-heading">RESUME</div>
+            <div class = "box input-shadow disabled">{{inputfilename | fileName}}<i class="fas fa-eye eye-right" (click) = "toggleModal = !toggleModal"></i></div>
+          </div>
+          
+  </div>
+
+</div>
+
+<file-modal *ngIf = "toggleModal" [myObj] = "myObj" [inputfilename] = "inputfilename" [inputDoc]="inputDoc" (hideModalEvent) = "toggleModal = !toggleModal"></file-modal>

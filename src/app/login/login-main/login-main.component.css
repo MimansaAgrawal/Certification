@@ -1,0 +1,48 @@
+.login-container {
+  background-color: #6F3A7F;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.login-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+}
+
+.img{
+  padding-top: 15px;
+}
+
+.gemini-login-btn{
+  background-color: #9F4B9C;
+  border-radius: 7px;
+  color: white;
+  font-size: 16px;
+  height: 40px;
+  font-family: "JetBrains Mono";
+  margin-top: 60px;
+}
+
+.card{
+  border-radius: 20px;
+  height: 380px;
+  width: 300px;
+}
+
+.ng-invalid.ng-touched:not(form) {
+  border-left: 4px solid theme-color("danger");
+}
+
+@include media-breakpoint-down(xs) {
+  .container {
+    width: 100%;
+  }
+}
+

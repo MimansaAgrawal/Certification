@@ -1,0 +1,9 @@
+<ng4-loading-spinner [timeout]="500000"> </ng4-loading-spinner>
+<app-spinner [show]="showLoader"></app-spinner>
+<show-error [showErrorMessage]="showErrorMessage" [message]="message"></show-error>
+
+<show-error [showSuccessMessage] = "showSuccessMessage"
+            [message] = "message"
+></show-error>
+<router-outlet></router-outlet>
+

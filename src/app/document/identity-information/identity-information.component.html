@@ -1,0 +1,57 @@
+<div class="card m-3 justify-content-center upload-doc-card" >
+  <!-- Card Heading -->
+  <h5 class="card-header upload-doc-card-header" >8) Identity Information</h5>
+  <!-- Card body -->
+  <div class="card-body">
+
+    <form [formGroup]="documentService.identityInfoForm">
+      <div class ="row">
+        <div class ="col-md-6 col-12">
+
+     
+      <div class="form-row">
+        <div class="form-group col-md-11">
+          <label for="aadharCardNumber">Aadhar No.(12 digits)<span class="required">*</span></label>
+          <input type="text" class="form-control" id="aadharCardNumber" formControlName="aadharCardNumber"
+            [ngClass]="{'is-invalid':documentService.identityInfoForm.get('aadharCardNumber').errors
+          && (documentService.identityInfoForm.get('aadharCardNumber').touched|| documentService.identityInfoForm.get('aadharCardNumber').dirty) }">
+          <span class=" text-danger"
+            *ngIf="documentService.identityInfoForm.get('aadharCardNumber').errors
+      && (documentService.identityInfoForm.get('aadharCardNumber').touched|| documentService.identityInfoForm.get('aadharCardNumber').dirty)">
+            <span *ngIf="documentService.identityInfoForm.get('aadharCardNumber').errors.required">
+              Aadhar Number is required
+            </span>
+          </span>
+          <span  class=" text-danger" *ngIf ="documentService.identityInfoForm.get('aadharCardNumber').errors?.pattern">
+            Aadhar Number  must be numbers only and must be 12 digits
+          </span>
+        </div>
+      </div>
+        </div>
+      
+      <div class ="col-md-6 col-12">
+
+      <div class="form-row">
+        <div class="form-group col-md-11">
+          <label for="panCardNumber">Pan Number (10 digits)<span class="required">*</span></label>
+          <input type="text" class="form-control" id="panCardNumber" formControlName="panCardNumber"
+            [ngClass]="{'is-invalid':documentService.identityInfoForm.get('panCardNumber').errors
+        && (documentService.identityInfoForm.get('panCardNumber').touched|| documentService.identityInfoForm.get('panCardNumber').dirty) }">
+          <span class=" text-danger"
+            *ngIf="documentService.identityInfoForm.get('panCardNumber').errors
+      && (documentService.identityInfoForm.get('panCardNumber').touched|| documentService.identityInfoForm.get('panCardNumber').dirty)">
+            <span *ngIf="documentService.identityInfoForm.get('panCardNumber').errors.required">
+              Pan Number is required
+            </span>
+          </span>
+          <span  class=" text-danger" *ngIf ="documentService.identityInfoForm.get('panCardNumber').errors?.pattern">
+            Invalid PAN Number
+          </span>
+        </div>
+      </div>
+      </div>
+        </div>
+    </form>
+
+  </div>
+</div>

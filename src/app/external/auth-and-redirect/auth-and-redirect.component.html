@@ -1,0 +1,19 @@
+<div class="text-center w-100" *ngIf="errMessage">
+  <h1>{{errMessage}}</h1>
+</div>
+
+
+<div *ngIf="!errMessage && authObj && screenIdMapped">
+  <div [ngSwitch]="screenIdMapped">
+    <app-upload *ngSwitchCase="'uploadDocument'" [screenId] = "authObj.screenId" [userId]="authObj.userId"></app-upload>
+    <app-rm *ngSwitchCase="'documentRM'" [screenId] = "authObj.screenId" [userId]="authObj.userId"></app-rm>
+    <app-buddy *ngSwitchCase="'documentBuddy'" [screenId] = "authObj.screenId" [userId]="authObj.userId"></app-buddy>
+    <app-confirm-buddy *ngSwitchCase="'documentBuddyConfirm'" [screenId] = "authObj.screenId" [userId]="authObj.userId"></app-confirm-buddy>
+    <app-main *ngSwitchCase="'addBankDetails'"  [screenId] = "authObj.screenId" [userId]="authObj.userId"></app-main>
+    <app-asset-information *ngSwitchCase="'allocateAssets'" [screenId] = "authObj.screenId" [userId]="authObj.userId"></app-asset-information>
+    <app-asset-configuration *ngSwitchCase="'handoverAssets'" [screenId] = "authObj.screenId" [userId]="authObj.userId"></app-asset-configuration>
+    <app-feedback *ngSwitchCase="'trainingfeedback'" [external]=true [externalUserId]="authObj.userId" [externalPurpose]="'Training'" ></app-feedback>
+    <app-feedback *ngSwitchCase="'probationfeedback'" [external]=true [externalUserId]="authObj.userId" [externalPurpose]="'Probation'" ></app-feedback>
+
+  </div>
+</div>

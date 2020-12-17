@@ -1,0 +1,11 @@
+<div *ngIf = "showErrorMessage" [@inOutAnimation] class = "notification">
+  <alert type="danger">
+    <strong>Oh snap!</strong> {{message}}
+  </alert>
+</div>
+
+<div *ngIf = "showSuccessMessage" [@inOutAnimation] class = "notification">
+  <alert type="success">
+    <strong>Success!</strong> {{message}}
+  </alert>
+</div>

@@ -1,0 +1,647 @@
+<div class="complete-container">
+  <br />
+  <br />
+  <div class="row justify-content-around row-class">
+    <div
+      [class.active]="preActiveLink"
+      class="card row-card"
+      (click)="getCandidateData('post_p')"
+    >
+      <div class="card-div">
+        <img
+          class="card-img"
+          src="../../../assets/probation.svg"
+          alt="candidate"
+        />
+        <!-- <p>{{dataSource.data.length}} </p> -->
+        <p>
+          <!-- <b>{{ preActiveCount }}</b> -->
+        </p>
+        <p class="grid-header">Probation</p>
+      </div>
+    </div>
+    <div
+      [class.active]="preCompletedLink"
+      class="card row-card"
+      (click)="getCandidateData('post_t')"
+    >
+      <div class="card-div">
+        <img
+          class="card-img"
+          src="../../../assets/training.svg"
+          alt="candidate"
+        />
+        <p>
+          <!-- <b>{{ preCompleteCount }}</b> -->
+        </p>
+        <p class="grid-header">Training</p>
+      </div>
+    </div>
+    <div
+      [class.active]="onActiveLink"
+      class="card row-card"
+      (click)="getCandidateData('post_conv')"
+    >
+      <div class="card-div">
+        <img
+          class="card-img"
+          src="../../../assets/converted.svg"
+          alt="candidate"
+        />
+        <!-- <i class="fa fa-handshake-o card-img icon-styling" aria-hidden="true"
+          ></i> -->
+
+        <p>
+          <!-- <b>{{ onActiveCount }}</b> -->
+        </p>
+        <p class="grid-header">Converted</p>
+      </div>
+    </div>
+    <div
+      [class.active]="rejectedLink"
+      class="card row-card"
+      (click)="getCandidateData('post_ext')"
+    >
+      <div class="card-div">
+        <img
+          class="card-img"
+          src="../../../assets/extended.svg"
+          alt="candidate"
+        />
+        <p>
+          <!-- <b>{{ rejectedCount }}</b> -->
+        </p>
+        <p class="grid-header">Extended</p>
+      </div>
+    </div>
+  </div>
+  <br /><br /><br />
+  <!-- search bar and add button -->
+  <div class="search-and-add row">
+    <div class="col-md-3">
+      <input
+        #filterValue
+        (keyup)="applyFilter(filterValue.value)"
+        aria-label="Search"
+        class="form-control search-box"
+        placeholder="Search Employees"
+        type="text"
+      />
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="add-button-div col-md-2">
+      <div (click)="exportAsXLSX()" class="button top-margin-0 cursor-pointer">
+        Export
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <div class="table-container mat-elevation-z8">
+    <table
+      class="table-responsive"
+      (matSortChange)="onSortChange()"
+      [dataSource]="dataSource"
+      mat-table
+      matSort
+      multiTemplateDataRows
+    >
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Employee Name</th>
+        <td *matCellDef="let element" mat-cell>
+          {{ element.candidateDetails?.name?.fullName }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="empCode">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Employee Code</th>
+        <td *matCellDef="let element" mat-cell>test123</td>
+      </ng-container>
+      <ng-container matColumnDef="rmName">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>RM</th>
+        <td *matCellDef="let element" mat-cell>
+          {{ element.reportingManager?.name }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="completionType">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Type</th>
+        <td *matCellDef="let element" mat-cell>
+          <ng-container *ngIf="status == 'post_p'">
+            <ng-container>Probation</ng-container>
+          </ng-container>
+          <ng-container *ngIf="status == 'post_t'">
+            <ng-container>Training</ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="dateOfJoining">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>D.O.J.</th>
+        <td *matCellDef="let element" mat-cell>
+          {{ getDate(element?.candidateDetails?.doj) }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="completionDate">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>D.O.C.</th>
+        <td *matCellDef="let element" mat-cell>
+          <ng-container
+            [ngSwitch]="element.candidateDetails.professionalExperience"
+          >
+            <ng-container *ngSwitchCase="'f'">
+              {{ getDate(element?.trainingPeriodEndsOn) }}
+            </ng-container>
+            <ng-container *ngSwitchCase="'l'">
+              {{ getDate(element?.probationPeriodEndsOn) }}
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="currentStatus">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>
+          Current Status
+        </th>
+        <td *matCellDef="let element" mat-cell>
+          {{ element.currentStatus?.value }}
+          <!-- <ng-container [ngSwitch]="element.candidateDetails.professionalExperience">
+            <ng-container *ngSwitchCase="'f'">
+              <ng-container *ngIf="!element.employeeTrainingFeedback.feedbackSubmitted">
+                Feedback Pending
+              </ng-container>
+              <ng-container *ngIf="element.employeeTrainingFeedback.feedbackSubmitted">
+                Training Feedback Submitted
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="'l'">
+              <ng-container *ngIf="!element.employeeProbationFeedback.feedbackSubmitted">
+                Feedback Pending
+              </ng-container>
+              <ng-container *ngIf="element.employeeTrainingFeedback.feedbackSubmitted">
+                Probation Feedback Submitted
+              </ng-container>
+            </ng-container>
+          </ng-container> -->
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="remarks">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Remarks</th>
+        <td *matCellDef="let element" mat-cell>
+          <ng-container
+            [ngSwitch]="element.candidateDetails.professionalExperience"
+          >
+            <ng-container *ngSwitchCase="'f'">
+              <ng-container
+                *ngIf="element.employeeTrainingFeedback.feedbackSubmitted"
+              >
+                <ng-container
+                  *ngIf="
+                    element.trainingFeedbackDetails[
+                      element.trainingFeedbackDetails.length - 1
+                    ].feedback.isFullTime
+                  "
+                >
+                  <ng-container
+                    ><label
+                      [ngbTooltip]="
+                        element.trainingFeedbackDetails[
+                          element.trainingFeedbackDetails.length - 1
+                        ].feedback.remark
+                      "
+                      tooltipClass="tooltip"
+                      class="text-primary"
+                    >
+                      {{
+                        element.trainingFeedbackDetails[
+                          element.trainingFeedbackDetails.length - 1
+                        ].feedback.remark | slice: 0:15
+                      }}... </label
+                    ><br />
+                  </ng-container>
+                </ng-container>
+                <ng-container
+                  *ngIf="
+                    !element.trainingFeedbackDetails[
+                      element.trainingFeedbackDetails.length - 1
+                    ].feedback.isFullTime
+                  "
+                >
+                  <ng-container
+                    ><label
+                      [ngbTooltip]="
+                        element.trainingFeedbackDetails[
+                          element.trainingFeedbackDetails.length - 1
+                        ].feedback.remark
+                      "
+                      class="text-danger"
+                    >
+                      {{
+                        element.trainingFeedbackDetails[
+                          element.trainingFeedbackDetails.length - 1
+                        ].feedback.remark | slice: 0:15
+                      }}... </label
+                    ><br />
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="'l'">
+              <ng-container
+                *ngIf="
+                  element.employeeTrainingFeedback.feedbackSubmitted &&
+                  !element.employeeProbationFeedback.feedbackSubmitted
+                "
+              >
+                <ng-container
+                  *ngIf="
+                    element.trainingFeedbackDetails[
+                      element.trainingFeedbackDetails.length - 1
+                    ].feedback.isFullTime
+                  "
+                >
+                  <ng-container
+                    ><label
+                      [ngbTooltip]="
+                        element.trainingFeedbackDetails[
+                          element.trainingFeedbackDetails.length - 1
+                        ].feedback.remark
+                      "
+                      tooltipClass="tooltip"
+                      class="text-primary cursor-pointer"
+                    >
+                      {{
+                        element.trainingFeedbackDetails[
+                          element.trainingFeedbackDetails.length - 1
+                        ].feedback.remark | slice: 0:15
+                      }}... </label
+                    ><br />
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+              <ng-container
+                *ngIf="element.employeeProbationFeedback.feedbackSubmitted"
+              >
+                <ng-container
+                  *ngIf="
+                    element.probationFeedbackDetails[
+                      element.probationFeedbackDetails.length - 1
+                    ].feedback.isFullTime
+                  "
+                >
+                  <ng-container>
+                    <label
+                      [ngbTooltip]="
+                        element.probationFeedbackDetails[
+                          element.probationFeedbackDetails.length - 1
+                        ].feedback.remark
+                      "
+                      tooltipClass="tooltip"
+                      class="text-primary cursor-pointer"
+                    >
+                      {{
+                        element.probationFeedbackDetails[
+                          element.probationFeedbackDetails.length - 1
+                        ].feedback.remark | slice: 0:15
+                      }}...
+                    </label>
+                    <br />
+                  </ng-container>
+                </ng-container>
+                <ng-container
+                  *ngIf="
+                    !element.probationFeedbackDetails[
+                      element.probationFeedbackDetails.length - 1
+                    ].feedback.isFullTime
+                  "
+                >
+                  <ng-container
+                    ><label
+                      [ngbTooltip]="
+                        element.probationFeedbackDetails[
+                          element.probationFeedbackDetails.length - 1
+                        ].feedback.remark
+                      "
+                      tooltipClass="tooltip"
+                      class="text-danger"
+                    >
+                      {{
+                        element.probationFeedbackDetails[
+                          element.probationFeedbackDetails.length - 1
+                        ].feedback.remark | slice: 0:15
+                      }}... </label
+                    ><br />
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+          <ng-container
+            *ngIf="
+              !element.employeeProbationFeedback.feedbackSubmitted &&
+              !element.employeeTrainingFeedback.feedbackSubmitted
+            "
+          >
+            N.A
+          </ng-container>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="options">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Options</th>
+        <td *matCellDef="let element" mat-cell>
+          <ng-container
+            [ngSwitch]="element.candidateDetails.professionalExperience"
+          >
+            <ng-container *ngSwitchCase="'f'">
+              <ng-container>
+                <span>
+                  <a
+                    (click)="onUpdate(element._id, element, true)"
+                    class="link-style"
+                    *ngIf="!element.employeeTrainingFeedback.feedbackSubmitted"
+                  >
+                    <i
+                      class="far fa-edit font-size text-secondary cursor-pointer"
+                    ></i>
+                    <!-- <i class="fa fa-eye font-size text-secondary cursor-pointer"></i> -->
+                  </a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <a
+                    (click)="
+                      $event.stopPropagation();
+                      openNewModal('template', element)
+                    "
+                    class="link-style"
+                    tooltipClass="tooltip"
+                    [ngbTooltip]="
+                      'Send reminder mail to RM for completing training feedback'
+                    "
+                    *ngIf="!element.employeeTrainingFeedback.feedbackSubmitted"
+                  >
+                    <i
+                      class="fa fa-bell font-size text-primary cursor-pointer"
+                    ></i>
+                  </a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <ng-container
+                    *ngIf="
+                      element.employeeTrainingFeedback.feedbackSubmitted &&
+                      element.nextAction.length > 0
+                    "
+                  >
+                    <ng-container
+                      *ngIf="
+                        !element.trainingFeedbackDetails[
+                          element.trainingFeedbackDetails.length - 1
+                        ].feedback.isFullTime
+                      "
+                    >
+                      <!-- <a (click)="$event.stopPropagation();openNewModal('template1', element)" class="link-style"
+                        tooltipClass="tooltip" [ngbTooltip]="'Send letters'">
+                        <i class="fa fa-send font-size text-primary cursor-pointer"></i></a>
+                      &nbsp;&nbsp;&nbsp;&nbsp; -->
+                      <a
+                        (click)="
+                          $event.stopPropagation();
+                          openNewModal('extensionTemplate', element)
+                        "
+                        class="link-style"
+                        tooltipClass="tooltip"
+                        [ngbTooltip]="
+                          'Enter duration and send extension letter to employee'
+                        "
+                      >
+                        <i
+                          class="fa fa-clock-o font-size text-secondary cursor-pointer"
+                        ></i>
+                      </a>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="
+                        element.trainingFeedbackDetails[
+                          element.trainingFeedbackDetails.length - 1
+                        ].feedback.isFullTime && element.nextAction.length > 0
+                      "
+                    >
+                      <!-- <a (click)="$event.stopPropagation();openNewModal('template1', element)" class="link-style"
+                          tooltipClass="tooltip" [ngbTooltip]="'Send letters'">
+                          <i class="fa fa-send font-size text-primary cursor-pointer"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp; -->
+                      <a
+                        (click)="onUpdate(element._id, element, false)"
+                        class="link-style"
+                        *ngIf="verifyNextAction(element,'tfr')"
+                      >
+                        <!-- <i class="far fa-edit font-size text-secondary cursor-pointer"></i> -->
+                        <i
+                          class="fa fa-eye font-size text-secondary cursor-pointer"
+                        ></i>
+                      </a>
+                      <a
+                        (click)="uploadDocument(element)"
+                        class="link-style"
+                        *ngIf="verifyNextAction(element,'utd')"
+                        tooltipClass="tooltip"
+                        [ngbTooltip]="'Upload Document'"
+                      >
+                        <!-- <i class="far fa-edit font-size text-secondary cursor-pointer"></i> -->
+                        <i
+                          class="fa fa-upload font-size text-secondary cursor-pointer"
+                        ></i>
+                      </a>
+                      <a
+                        (click)="verifyDocument(element)"
+                        class="link-style"
+                        *ngIf="verifyNextAction(element,'vtd')"
+                        tooltipClass="tooltip"
+                        [ngbTooltip]="'Verify Document'"
+                      >
+                        <!-- <i class="far fa-edit font-size text-secondary cursor-pointer"></i> -->
+                        <i
+                          class="fa fa-check font-size text-secondary cursor-pointer"
+                        ></i>
+                      </a>
+                    </ng-container>
+                  </ng-container>
+                </span>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="'l'">
+              <span>
+                <a
+                  (click)="uploadDocument(element)"
+                  class="link-style"
+                  *ngIf="verifyNextAction(element,'utd')"
+                  tooltipClass="tooltip"
+                  [ngbTooltip]="'Upload Document'"
+                >
+                  <!-- <i class="far fa-edit font-size text-secondary cursor-pointer"></i> -->
+                  <i
+                    class="fa fa-upload font-size text-secondary cursor-pointer"
+                  ></i>
+                </a>
+                <a
+                  (click)="verifyDocument(element)"
+                  class="link-style"
+                  *ngIf="verifyNextAction(element,'vtd')"
+                  tooltipClass="tooltip"
+                  [ngbTooltip]="'Verify Document'"
+                >
+                  <!-- <i class="far fa-edit font-size text-secondary cursor-pointer"></i> -->
+                  <i
+                    class="fa fa-check font-size text-secondary cursor-pointer"
+                  ></i>
+                </a>
+
+                <a
+                  (click)="onUpdate(element._id, element, true)"
+                  class="link-style"
+                  *ngIf="
+                    !element.employeeProbationFeedback.feedbackSubmitted &&
+                    verifyNextAction(element,'pef')
+                  "
+                >
+                  <i
+                    class="far fa-edit font-size text-secondary cursor-pointer"
+                  ></i>
+                  <!-- <i class="fa fa-eye font-size text-secondary cursor-pointer" ></i> -->
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a
+                  (click)="
+                    $event.stopPropagation(); openNewModal('template', element)
+                  "
+                  class="link-style"
+                  tooltipClass="tooltip"
+                  [ngbTooltip]="
+                    'Send reminder mail to RM for completing probation feedback'
+                  "
+                  *ngIf="
+                    !element.employeeProbationFeedback.feedbackSubmitted &&
+                    verifyNextAction(element,'pef')
+                  "
+                >
+                  <i
+                    class="fa fa-bell font-size text-primary cursor-pointer"
+                  ></i>
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <ng-container
+                  *ngIf="
+                    element.employeeProbationFeedback.feedbackSubmitted &&
+                    element.nextAction.length > 0
+                  "
+                >
+                  <ng-container
+                    *ngIf="
+                      element.probationFeedbackDetails[
+                        element.probationFeedbackDetails.length - 1
+                      ].feedback.isFullTime
+                    "
+                  >
+                    <a
+                      (click)="
+                        $event.stopPropagation();
+                        openNewModal('template1', element)
+                      "
+                      class="link-style"
+                      tooltipClass="tooltip"
+                      [ngbTooltip]="
+                        'Send probation completion letter to employee'
+                      "
+                    >
+                      <i
+                        class="fa fa-send font-size text-primary cursor-pointer"
+                      ></i>
+                    </a>
+                  </ng-container>
+
+                  <ng-container
+                    *ngIf="
+                      !element.probationFeedbackDetails[
+                        element.probationFeedbackDetails.length - 1
+                      ].feedback.isFullTime
+                    "
+                  >
+                    <!-- <a (click)="$event.stopPropagation();openNewModal('template1', element)" class="link-style"
+                      tooltipClass="tooltip" [ngbTooltip]="'Send letters'">
+                      <i class="fa fa-send font-size text-primary cursor-pointer" ></i> </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp; -->
+                    &nbsp;&nbsp;<a
+                      (click)="
+                        $event.stopPropagation();
+                        openNewModal('extensionTemplate', element)
+                      "
+                      class="link-style"
+                      tooltipClass="tooltip"
+                      [ngbTooltip]="
+                        'Enter duration and send extension letter to employee'
+                      "
+                    >
+                      <i
+                        class="fa fa-clock-o font-size text-secondary cursor-pointer"
+                      ></i>
+                    </a>
+                  </ng-container>
+                </ng-container>
+              </span>
+            </ng-container>
+          </ng-container>
+        </td>
+      </ng-container>
+      <tr *matHeaderRowDef="columnsToDisplay" mat-header-row></tr>
+      <tr
+        (click)="expandedElement = expandedElement === element ? null : element"
+        *matRowDef="let element; columns: columnsToDisplay"
+        [class.example-expanded-row]="expandedElement === element"
+        class="example-element-row"
+        mat-row
+      ></tr>
+    </table>
+    <mat-paginator #paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      class="width100p"
+    ></mat-paginator>
+  </div>
+</div>
+
+<prompt-modal
+  *ngIf="toggleModalExtension"
+  [dateFlag]="'true'"
+  [modalTitleText]="modalTitleText"
+  [modalBodyText]="modalBodyText"
+  [acceptText]="'Yes'"
+  [rejectText]="'No'"
+  (acceptEvent)="startDate = $event; extend()"
+  (hideModalEvent)="toggleModalExtension = !toggleModalExtension"
+>
+</prompt-modal>
+
+<prompt-modal
+  *ngIf="toggleModal"
+  [modalTitleText]="modalTitleText"
+  [modalBodyText]="modalBodyText"
+  [acceptText]="'Confirm'"
+  [rejectText]="'Cancel'"
+  (acceptEvent)="sendLetters()"
+  (hideModalEvent)="toggleModal = !toggleModal"
+>
+</prompt-modal>
+
+<prompt-modal
+  *ngIf="toggleModalFeedback"
+  [modalTitleText]="modalTitleText"
+  [modalBodyText]="modalBodyText"
+  [acceptText]="'Confirm'"
+  [rejectText]="'Cancel'"
+  (acceptEvent)="confirm()"
+  (hideModalEvent)="toggleModalFeedback = !toggleModalFeedback"
+>
+</prompt-modal>
+
+<prompt-modal
+  *ngIf="toggleModalWarning"
+  [warningFlag]="'false'"
+  [modalTitleText]="'Warning'"
+  [modalBodyText]="message"
+  [rejectText]="'Cancel'"
+  (hideModalEvent)="toggleModalWarning = !toggleModalWarning"
+>
+</prompt-modal>

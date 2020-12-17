@@ -1,0 +1,135 @@
+<div class = "details-container">
+
+    <form [formGroup]="bankDetailsForm" class="wrapper background-white myRow ">
+        <mat-card >
+        <mat-card-title class="mat-card-style">2) Bank Details</mat-card-title>
+        <!-- <form [formGroup]="bankDetailsForm"> -->
+      
+        <div class="row">
+      
+            <!-- Input field for Name -->
+      
+            <div class="form-group col-md-4 offset-md-1 editText top-padding1 ">
+                <div class="input-heading heading-padding required-field" for = "beneficiaryName">BENEFICIARY NAME</div>
+      
+                <input formControlName="beneficiaryName" id="beneficiaryName" type="text" class="input input-shadow"
+                    placeholder="Beneficiary Name">
+      
+                <div *ngIf="f.beneficiaryName.touched && f.beneficiaryName.invalid" class="alertmsg">
+      
+                    <div *ngIf="f.beneficiaryName.errors.required" class="req">Name is required.</div>
+      
+                    <div *ngIf="f.beneficiaryName.errors.pattern" class="req">Please, Enter Valid Name.</div>
+      
+                </div>
+      
+            </div>
+      
+            <div class="form-group col-md-4 offset-md-1 editText top-padding1">
+                <div class="input-heading heading-padding required-field" for="bName">BANK NAME</div>
+      
+                <input formControlName="bName" id="bName" type="text" class="input input-shadow"
+                    placeholder="Bank Name">
+      
+                <div *ngIf="f.bName.touched && f.bName.invalid" class="alertmsg">
+      
+                    <div *ngIf="f.bName.errors.required" class="req">Bank Name is required.</div>
+      
+                    <div *ngIf="f.bName.errors.pattern" class="req">Please, Enter Valid Bank Name.</div>
+      
+                </div>
+      
+            </div>
+      
+        <!-- </div> -->
+      
+        <!-- input field for ifsc code -->
+        <!-- <div class="row"> -->
+      
+      
+            <div class="form-group col-md-4 offset-md-1 editText top-padding ">
+                <div class="input-heading heading-padding required-field" for="ifscCode">IFSC CODE</div>
+                <input formControlName="ifscCode" id="ifscCode" type="text" class="input input-shadow"
+                    placeholder="IFSC Code" length="11">
+      
+                <div *ngIf="f.ifscCode.touched && f.ifscCode.invalid" class="alertmsg">
+      
+                    <div *ngIf="f.ifscCode.errors.required" class="req">IFSC Code is required.</div>
+      
+                    <div *ngIf="f.ifscCode.errors.pattern" class="req">Please enter valid IFSC
+                        Code.</div>
+      
+                </div>
+      
+            </div>
+      
+            <!-- Input field for account no -->
+      
+            <div class="form-group col-md-4 offset-md-1 editText top-padding">
+      
+                <div class="input-heading heading-padding required-field" for="accNo">ACCOUNT NO</div>
+      
+                <input formControlName="accNo" id="accNo" type="text" class="input input-shadow"
+                    placeholder="Account No">
+      
+                <div *ngIf="f.accNo.touched && f.accNo.invalid" class="alertmsg">
+      
+                    <div *ngIf="f.accNo.errors.required" class="req">Account No is required.</div>
+                    <div *ngIf="f.accNo.errors.pattern  || f.accNo.errors.minlength || f.accNo.errors.maxlength" class="req">
+                        Please Enter valid Account Number.
+                      </div>
+      
+                </div>
+      
+            </div>
+      
+        <!-- </div> -->
+      
+        <!-- <div class="row"> -->
+      
+            <!-- input field for aadhar card no -->
+      
+            <div class="form-group col-md-4 offset-md-1 editText top-padding">
+                <div class="input-heading heading-padding required-field" for="aadharNo">AADHAR CARD NO</div>
+                <input formControlName="aadharNo" id="aadharNo" type="text" class="input input-shadow disabled"
+                    placeholder="Aadhar Card No" length="12" disabled>
+      
+                <!-- <div *ngIf="f.aadharNo.touched && f.aadharNo.invalid" class="alertmsg">
+      
+                    <div *ngIf="f.aadharNo.errors.required" class="req">Aadhar Card No is required.</div>
+      
+                    <div *ngIf="f.aadharNo.errors.minlength || f.aadharNo.errors.maxlength" class="req">Please, Enter 12 digit valid
+                        Aadhar Card No.</div>
+      
+                </div> -->
+      
+            </div>
+      
+            <!-- input field for PAN No -->
+      
+      
+            <div class="form-group col-md-4 offset-md-1 editText top-padding">
+                <div class="input-heading heading-padding required-field " for="panNo"><b class="input-heading ">PAN NO</b></div>
+                <input formControlName="panNo" id="panNo" type="text" class = "input input-shadow disabled" placeholder="PAN No" disabled>
+      
+                <!-- <div *ngIf="f.panNo.touched && f.panNo.invalid" class="alertmsg">
+      
+                    <div *ngIf="f.panNo.errors.required" class="req">PAN No is required.</div>
+      
+                    <div *ngIf="f.panNo.errors.pattern" class="req">Please, Enter valid PAN No.</div>
+                </div> -->
+            </div>
+      
+        </div>
+        </mat-card>
+        <!-- <div class="center text-center pt-10">
+            <div>
+                <button class="btn btn-primary btn-lg prev-button mr-1" type="button"
+                    (click)="prev()">PREVIOUS</button>
+                <button class="btn btn-secondary btn-lg next-button ml-1" type="button" [disabled]="!bankDetailsForm.valid"
+                    (click)="next()">NEXT</button>
+            </div>
+        </div> -->
+      </form>
+      
+</div>

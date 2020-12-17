@@ -1,0 +1,337 @@
+<div class="card m-3 justify-content-center upload-doc-card">
+
+  <!-- Card Heading -->
+  <h5 class="card-header upload-doc-card-header">1)Personal Details</h5>
+  <!-- Card body -->
+  <div class="card-body">
+
+    <form [formGroup]=" documentService.personalDetailForm">
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11">
+            <label for="fName">Name<span class = "required">*</span></label>
+            <input type="text" class="form-control" id="fName" formControlName="fName"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('fName').errors
+                && (documentService.personalDetailForm.get('fName').touched||documentService.personalDetailForm.get('fName').dirty) }">
+            <div>
+              <span class=" text-danger"
+                *ngIf="documentService.personalDetailForm.get('fName').errors
+                    && (documentService.personalDetailForm.get('fName').touched|| documentService.personalDetailForm.get('fName').dirty)">
+                <span *ngIf="documentService.personalDetailForm.get('fName').errors.required
+                     || documentService.personalDetailForm.get('fName').errors?.whitespace">
+                  First Name is required
+                </span>
+              </span>
+              <span class=" text-danger" *ngIf="documentService.personalDetailForm.get('fName').errors?.pattern">
+                First name must contain only letters.
+              </span>
+            </div>
+          </div>
+          <!-- </div> -->
+
+
+          <!-- dob -->
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11">
+            <label for="dob">Date of Birth<span class="required">*</span> : </label>
+            <input type="date" #dob [max]="maxDate" (input)="dobChange(dob.value)" id="dob" class="form-control"
+              formControlName="dob"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('dob').errors
+                && (documentService.personalDetailForm.get('dob').touched||documentService.personalDetailForm.get('dob').dirty) }">
+            <div>
+              <span class="help-block text-danger"
+                *ngIf="documentService.personalDetailForm.get('dob').errors
+                  && (documentService.personalDetailForm.get('dob').touched||documentService.personalDetailForm.get('dob').dirty)">
+                <span *ngIf="documentService.personalDetailForm.get('dob').errors.required">
+                  DOB is required
+                </span>
+              </span>
+            </div>
+          </div>
+          <!-- </div> -->
+          <!-- nationality row -->
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11">
+            <label for="nationality">Nationality<span class="required">*</span></label>
+            <select class="form-control dropdownClass" id="nationality" formControlName="nationality"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('nationality').errors
+              && (documentService.personalDetailForm.get('nationality').touched||documentService. personalDetailForm.get('nationality').dirty) }">
+              <option value="indian">Indian</option>
+              <option value="other">Other</option>
+            </select>
+            <i class="fas fa-caret-down arrow-pos"></i>
+            <div>
+              <span class=" text-danger"
+                *ngIf="documentService.personalDetailForm.get('nationality').errors
+              && (documentService.personalDetailForm.get('nationality').touched|| documentService.personalDetailForm.get('nationality').dirty)">
+                <span *ngIf="documentService.personalDetailForm.get('nationality').errors.required">
+                  Nationality is required
+                </span>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="form-group col-md-11"
+            *ngIf="documentService.personalDetailForm.get('nationality').value!=='indian'">
+            <label for="otherCountry">Country<span class="required">*</span></label>
+            <input type="text" class="form-control" formControlName="otherCountry" id="otherCountry"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('otherCountry').errors
+              && (documentService.personalDetailForm.get('otherCountry').touched||documentService. personalDetailForm.get('otherCountry').dirty) }">
+            <div>
+              <span class=" text-danger"
+                *ngIf="documentService.personalDetailForm.get('otherCountry').errors
+              && (documentService.personalDetailForm.get('otherCountry').touched|| documentService.personalDetailForm.get('otherCountry').dirty)">
+                <span *ngIf="documentService.personalDetailForm.get('otherCountry').errors.required">
+                  Country is required
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <!-- <br> -->
+          <div class="form-group col-md-11"
+            *ngIf="documentService.personalDetailForm.get('nationality').value!=='indian'">
+            <label for="workPermit">Valid Work Permit in India?<span class="required">*</span></label>
+            <select class="form-control dropdownClass" id="workPermit" formControlName="workPermit"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('workPermit').errors
+                && (documentService.personalDetailForm.get('workPermit').touched||documentService. personalDetailForm.get('workPermit').dirty) }">
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+            <i class="fas fa-caret-down arrow-pos"></i>
+          </div>
+
+
+          <!-- language proficiency -->
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11">
+            <label for="languageProficiency">Language Proficiency<span class="required">*</span></label>
+            <input type="text" class="form-control" formControlName="languageProficiency" id="languageProficiency"
+              placeholder="english/hindi" [ngClass]="{'is-invalid':documentService.personalDetailForm.get('languageProficiency').errors
+              && (documentService.personalDetailForm.get('languageProficiency').touched) }">
+            <div>
+
+              <span class=" text-danger" *ngIf="documentService.personalDetailForm.get('languageProficiency').errors
+                && (documentService.personalDetailForm.get('languageProficiency').touched)">
+                <span *ngIf="documentService.personalDetailForm.get('languageProficiency').errors.required
+              || documentService.personalDetailForm.get('languageProficiency').errors?.whitespace">
+                  Language Proficiency is required
+                </span>
+              </span>
+              <span class=" text-danger"
+                *ngIf="documentService.personalDetailForm.get('languageProficiency').errors?.pattern">
+                Language Proficiency must contain only letters.
+              </span>
+            </div>
+
+          </div>
+
+          <div class="form-group col-md-11"
+            *ngIf="documentService.personalDetailForm.get('nationality').value =='indian'">
+            <label for="bloodGroup">Blood Group<span class="required">*</span></label>
+            <select class="form-control dropdownClass" id="bloodGroup" formControlName="bloodGroup"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('bloodGroup').errors
+           && (documentService.personalDetailForm.get('bloodGroup').touched||documentService. personalDetailForm.get('bloodGroup').dirty) }">
+              <option *ngFor="let b of bloodGroup" [value]="b">{{b}}</option>
+          
+            </select>
+        
+            <i class="fas fa-caret-down arrow-pos"></i>
+            <div>
+
+              <span class=" text-danger" *ngIf="documentService.personalDetailForm.get('bloodGroup').errors
+                && documentService.personalDetailForm.get('bloodGroup').touched">
+                <span *ngIf="documentService.personalDetailForm.get('bloodGroup').errors.required">
+                  Blood Group is required
+                </span>
+              </span>
+            </div>
+          </div>
+          <!-- </div> -->
+        </div>
+        <div class="col-md-6 col-12">
+          <div class="form-group col-md-11">
+
+            <label>Gender<span class="required">*</span> :</label>
+            <select class="form-control dropdownClass" id="Gender" formControlName="Gender"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('Gender').errors
+            && (documentService.personalDetailForm.get('Gender').touched||documentService. personalDetailForm.get('Gender').dirty) }">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="T">TransGender</option>
+            </select>
+            <div>
+
+              <span class="help-block text-danger" *ngIf="documentService.personalDetailForm.get('Gender').errors
+                     && documentService.personalDetailForm.get('Gender').touched">
+                <span *ngIf="documentService.personalDetailForm.get('Gender').errors.required">
+                  Gender is required
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <!-- </div> -->
+
+          <!-- marital status -->
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11">
+            <label>Marital Status<span class="required">*</span> :</label>
+            <select class="form-control dropdownClass" id="maritalStatus" formControlName="maritalStatus"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('maritalStatus').errors
+            && (documentService.personalDetailForm.get('maritalStatus').touched||documentService. personalDetailForm.get('maritalStatus').dirty) }">
+              <option *ngFor="let m of maritalStats" [value]="m">{{m}}</option>
+       
+            </select>
+            <i class="fas fa-caret-down arrow-pos"></i>
+            <div>
+              <span class="help-block text-danger" *ngIf="documentService.personalDetailForm.get('maritalStatus').errors
+                && documentService.personalDetailForm.get('maritalStatus').touched">
+                <span *ngIf="documentService.personalDetailForm.get('maritalStatus').errors.required">
+                  Marital Status is required
+                </span>
+              </span>
+            </div>
+          </div>
+          <!-- </div> -->
+          <!-- </fieldset> -->
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11"
+            *ngIf="documentService.personalDetailForm.get('maritalStatus').value==='Married'">
+            <label *ngIf="documentService.personalDetailForm.get('maritalStatus').value==='Married'"
+              for="spouseName">Spouse Name<span class="required">*</span>
+            </label>
+            <input *ngIf="documentService.personalDetailForm.get('maritalStatus').value==='Married'" type="text"
+              class="form-control" formControlName="spouseName" id="spouseName" [ngClass]="{'is-invalid':documentService.personalDetailForm.get('spouseName').errors
+           && documentService.personalDetailForm.get('spouseName').touched }">
+            <div *ngIf="documentService.personalDetailForm.get('maritalStatus').value==='Married'">
+              <span class="help-block text-danger"
+                *ngIf="documentService.personalDetailForm.get('spouseName').errors && documentService.personalDetailForm.get('spouseName').touched">
+                <span *ngIf="documentService.personalDetailForm.get('spouseName').errors.required">
+                  Spouse name is Required
+                </span>
+              </span>
+            </div>
+          </div>
+          <!-- </div> -->
+
+          <!-- contact -->
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11">
+            <label for="contact">Contact No<span class="required">*</span></label>
+            <input type="tel" formControlName="contact" class="form-control" id="contact" [ngClass]="{'is-invalid':documentService.personalDetailForm.get('contact').errors
+               && documentService.personalDetailForm.get('contact').touched }">
+            <div>
+
+              <span class=" text-danger"
+                *ngIf="documentService.personalDetailForm.get('contact').errors
+                      && (documentService.personalDetailForm.get('contact').touched|| documentService.personalDetailForm.get('contact').dirty)">
+                <span *ngIf="documentService.personalDetailForm.get('contact').errors.required
+   
+                ">
+                  Contact No is required
+                </span>
+              </span>
+              <span class=" text-danger" *ngIf="documentService.personalDetailForm.get('contact').errors?.pattern">
+                Invalid! put-10 digit mobile number
+              </span>
+            </div>
+            <!-- <span  class=" text-danger" *ngIf ="documentService.personalDetailForm.get('contact').errors?.minlength">
+             Please put 10 digit mobile number
+           </span> -->
+          </div>
+          <!-- </div> -->
+
+          <!-- emergency contact -->
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11">
+            <label for="emergencyContact">Emergency Contact No.<span class="required">*</span></label>
+            <input type="tel" class="form-control" formControlName="eContact" id="emergencyContact" [ngClass]="{'is-invalid':documentService.personalDetailForm.get('eContact').errors
+           && (documentService.personalDetailForm.get('eContact').touched) }">
+            <div>
+
+              <span class=" text-danger" *ngIf="documentService.personalDetailForm.get('eContact').errors
+                && (documentService.personalDetailForm.get('eContact').touched)">
+                <span *ngIf="documentService.personalDetailForm.get('eContact').errors.required
+
+            ">
+                  Emergency Contact no is required
+                </span>
+              </span>
+              <span class=" text-danger" *ngIf="documentService.personalDetailForm.get('eContact').errors?.pattern">
+                Invalid! put-10 digit mobile number
+              </span>
+            </div>
+            <!-- <span  class=" text-danger" *ngIf ="documentService.personalDetailForm.get('eContact').errors?.minlength">
+             Please put 10 digit mobile number
+           </span> -->
+          </div>
+          <!-- </div> -->
+
+          <!-- email -->
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11">
+            <label for="email">Email address<span class="required">*</span></label>
+            <input type="email" class="form-control" formControlName="email" id="email" placeholder="name@example.com"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('email').errors
+            && (documentService.personalDetailForm.get('email').touched||documentService. personalDetailForm.get('email').dirty) }">
+            <div>
+
+              <span class=" text-danger"
+                *ngIf="documentService.personalDetailForm.get('email').errors
+            && (documentService.personalDetailForm.get('email').touched||documentService. personalDetailForm.get('email').dirty)">
+                <span *ngIf="documentService.personalDetailForm.get('email').errors.required
+            || documentService.personalDetailForm.get('email').errors?.whitespace
+            ">
+                  Email is required
+                </span>
+              </span>
+              <span class="text-danger" *ngIf="documentService.personalDetailForm.get('email').errors?.pattern">
+                Provide a valid email address
+              </span>
+            </div>
+          </div>
+          <!-- </div> -->
+
+          <!-- Blood Group row -->
+          <!-- <div class="form-row"> -->
+          <div class="form-group col-md-11"
+            *ngIf="documentService.personalDetailForm.get('nationality').value!=='indian'">
+            <label for="bloodGroup">Blood Group<span class="required">*</span></label>
+            <select class="form-control dropdownClass" id="bloodGroup" formControlName="bloodGroup"
+              [ngClass]="{'is-invalid':documentService.personalDetailForm.get('bloodGroup').errors
+           && (documentService.personalDetailForm.get('bloodGroup').touched||documentService. personalDetailForm.get('bloodGroup').dirty) }">
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="0+">O+</option>
+              <option value="0-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+            <i class="fas fa-caret-down arrow-pos"></i>
+            <div>
+
+              <span class=" text-danger" *ngIf="documentService.personalDetailForm.get('bloodGroup').errors
+                && documentService.personalDetailForm.get('bloodGroup').touched">
+                <span *ngIf="documentService.personalDetailForm.get('bloodGroup').errors.required">
+                  Blood Group is required
+                </span>
+              </span>
+            </div>
+          </div>
+          <!-- </div> -->
+
+
+
+        </div>
+      </div>
+      <br>
+
+    </form>
+
+  </div>
+</div>

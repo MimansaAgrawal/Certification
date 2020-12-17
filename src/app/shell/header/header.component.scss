@@ -1,0 +1,17 @@
+.navbar {
+  // margin-bottom: $spacer;
+  background-image: linear-gradient(to right, #A26ECA , #5C45A0);
+  height: 65px;
+}
+.logged-in-as{
+  color: white;
+}
+
+.nav-link.dropdown-toggle {
+  cursor: pointer;
+}
+.navbar-nav{
+  display: flex!important;
+  flex-basis: auto;
+  margin-top: -35px;
+}

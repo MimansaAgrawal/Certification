@@ -1,0 +1,55 @@
+<!-- Verify Documents Page -->
+<div class="verify-container" >
+  <div class="mb-5">
+    <common-header [heading] = "'VERIFY DOCUMENTS'"></common-header>
+  </div>
+
+
+  <!-- api data table -->
+  <div class="table table-responsive text-center">
+    <table class="table  table-hover table-styling">
+      <thead>
+        <tr *ngFor="let doc of rowArray ; index as i">
+          <td class="text-left">{{doc.value}}</td>
+          <td class="text-center">
+            <button class="button m-auto" (click)="doc.toggleModal = !doc.toggleModal">VIEW</button>
+            <file-modal *ngIf = "doc.toggleModal" [myObj] = "myObj"
+            [inputDoc]="doc.docId" (hideModalEvent) = "doc.toggleModal = !doc.toggleModal"></file-modal>
+              <!-- <button class="view-button"
+              (click)="openModal(template,id1=doc.docId)">VIEW</button> -->
+          </td>
+          <td class="radioStyling">
+            <input type="radio" [attr.id]="'approve'+i" [attr.name]="i" [attr.value]="i"
+              [checked]="doc.reject===false?true:false" (click)="hideTextBox(i)">&nbsp;&nbsp;
+            <div [attr.for]="'approve'+i" class="label-text">Approve</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" [attr.id]="'reject'+i" [attr.name]=" i" [checked]="doc.reject===true?true:false"
+              [attr.value]="'reject'+ i" (click)="openTextBox(i)">&nbsp;&nbsp;
+            <div [attr.for]="'reject'+i" class="label-text">Reject</div>&nbsp;&nbsp;
+            <input class="reason-input-box" type="text" *ngIf="doc.reject" placeholder="Add Reason to Reject"
+            [(ngModel)]="doc.reason" value="{{doc.reason}}">
+        </td>
+          
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div *ngIf="documentNotUploaded.length" class="ml">
+    <p><b>Documents not uploaded:-</b></p>
+  <ul *ngFor="let doc of documentNotUploaded">
+    <li>{{doc}}</li>
+
+  </ul>
+</div>
+  <!-- Verify button part -->
+  <div class="row col-12 item">
+    <div class="col-4"></div>
+    <div class="col-4 text-center">
+      <button type="button" class="button" (click)="saveVerifyStatus()">
+        VERIFY
+      </button>
+
+    </div>
+    <div class="col-4"></div>
+  </div>
+</div>
+

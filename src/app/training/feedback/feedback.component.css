@@ -1,0 +1,19 @@
+.heading {
+    background: #edf1f7;
+    padding-top: 11px;
+    font-size: 16px;
+    font-family: montserrat;
+    font-weight: bold;
+}
+
+.left-arrow {
+	margin-right: 25px;
+    font-size: 20px;
+    line-height: 20px;
+}
+.bg-color{
+    background-color: #edf1f7
+}
+.ml-10{
+    margin-left: -10%;
+}

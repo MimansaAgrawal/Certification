@@ -1,0 +1,35 @@
+.modal-title {
+  font-size: 20px;
+}
+
+.edit-field {
+  padding: 10px 0px;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+.modalText-title {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: bold;
+  text-align: left;
+}
+
+.btn-row {
+  padding: 20px 0px;
+  text-align: center
+}
+
+
+
+.border-red {
+  border: red solid 1px;
+}
+
+.edit-field input {
+  height: 34px;
+  border: none;
+  border-bottom: 1px solid #CCC;
+}

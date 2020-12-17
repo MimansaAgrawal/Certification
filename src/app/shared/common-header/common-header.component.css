@@ -1,0 +1,29 @@
+.heading {
+    padding-top: 11px;
+    font-size: 16px;
+    font-family: montserrat;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.left-arrow {
+	margin-right: 25px;
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.button2 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    width: 150px;
+    height: 40px;
+    background:#6c757d;
+    font-size: 12px;
+    line-height: 40px;
+    color: white;
+    border-radius: 2px;
+    text-align: center;
+    border:none;
+  }

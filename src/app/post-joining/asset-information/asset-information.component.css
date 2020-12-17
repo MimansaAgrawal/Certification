@@ -1,0 +1,23 @@
+  .plus-button {
+    font-size: 25px;
+    color: green;
+    position: absolute;
+    right: 0;
+    margin-right: 70px;
+    cursor: pointer;
+  }
+
+  .minus-button {
+    color: red;
+    font-size: 25px;
+    margin-left: 72px;
+    cursor: pointer;
+  }
+
+  .buttons-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .height-styling{
+    height: fit-content;
+  }

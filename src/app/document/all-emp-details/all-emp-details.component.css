@@ -1,0 +1,45 @@
+.form-control{
+  border-radius: 7px;
+  padding-top: 1.4em;
+  padding-bottom: 1.7em;
+  /* border: 1px solid #A26ECA !important;
+  box-shadow: 1px 1px #5C45A0 !important; */
+}
+input[type="radio"] {
+  width: auto !important;
+  height: auto !important;
+  /* background: white;
+  font-size: 10px;
+  font-weight: 600; */
+
+}
+
+.add-emp-heading{
+  vertical-align: middle !important;
+  display: inline-flex !important;
+}
+
+.add-emp-icon{
+  font-size: 20px;
+  color: green; 
+  cursor: pointer;
+}
+
+.emp-reference{
+  border: 3px solid #eee;
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.remove-emp-icon{
+  margin-left: 2px;
+  color: red;
+  font-size: 20px !important; 
+  float: right; 
+  cursor: pointer;
+}
+
+.error-msg{
+  margin-left: 15px;
+}

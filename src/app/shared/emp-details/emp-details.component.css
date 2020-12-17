@@ -1,0 +1,111 @@
+.text-color{
+  color: rgb(0,0,0);
+}
+.mat-select-panel {
+  background-color: red;
+}
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+.editText input {
+  border-radius: 7px;
+  padding-top: 1.4em;
+  padding-bottom: 1.7em;
+}
+.req {
+  color: red;
+}
+.ng-touched.ng-pristine {
+  border-color: red;
+}
+.table th,
+.table td {
+  border: none !important;
+}
+
+input:hover {
+  border-radius: 5px;
+  border-color: blue;
+}
+
+.text-block {
+  text-align: center;
+  position: relative;
+  margin-top: -130px;
+  margin-bottom: 100px;
+  /* margin-left: -20%; */
+}
+.next-button {
+  /* background-color: blue;
+  color: white;
+  width: 126.37px;
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 10px;
+  background-color: blueviolet; */
+
+  color: white;
+  background-color: blueviolet;
+  width: 126.37px;
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.prev-button {
+  /* background-color: white;
+  color: blueviolet;
+  width: 126.37px;
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 10px;
+  border: 0.5px solid; */
+  background-color: white;
+  color: blue;
+  width: 126.37px;
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 10px;
+  border: 0.5px solid;
+}
+
+.view-button {
+  width: 126.37px;
+  font-family: Open Sans, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.input-text-style {
+  text-align: -webkit-center;
+}
+.input-field {
+  height: 40px;
+}
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: white;
+}
+
+background-white {
+  background-color: white;
+}
+
+.top-padding {
+  padding-top: 10px;
+}
+
+.row-left-margin {
+  margin-left: 5px;
+}
+
+
+.mat-card-style{
+  font-weight: bolder !important; 
+  font-size: large !important; 
+  height: 48px !important; 
+  margin-top:8px !important
+}

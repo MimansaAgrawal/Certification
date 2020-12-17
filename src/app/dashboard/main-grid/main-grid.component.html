@@ -1,0 +1,198 @@
+<div class="complete-container">
+  <br>
+  <br>
+  <div class="row justify-content-around row-class">
+
+    <div [class.active]="preActiveLink" class="card row-card" (click)="getCandidateData('pre_a')">
+      <div class="card-div"><img class="card-img" src="../../../assets/user.svg" alt="candidate">
+        <!-- <p>{{dataSource.data.length}} </p> -->
+        <p> <b>{{preActiveCount}}</b></p>
+        <p class="grid-header">Pre Onboarding Active</p>
+      </div>
+    </div>
+    <div [class.active]="preCompletedLink" class="card row-card" (click)="getCandidateData('pre_c')">
+      <div class="card-div"><img class="card-img" src="../../../assets/work.svg" alt="candidate">
+        <p><b>{{preCompleteCount}}</b> </p>
+        <p class="grid-header">Onboarding Active</p>
+      </div>
+    </div>
+    <div [class.active]="onActiveLink" class="card row-card" (click)="getCandidateData('on_c')">
+      <div class="card-div">
+        <i class="fa fa-handshake-o card-img hand-shake" aria-hidden="true"></i>
+
+        <p><b>{{onActiveCount}}</b> </p>
+        <p class="grid-header">Onboarding Completed </p>
+      </div>
+    </div>
+    <div [class.active]="rejectedLink" class="card row-card" (click)="getCandidateData('r')">
+      <div class="card-div"><img class="card-img" src="../../../assets/rejected .svg" alt="candidate">
+        <p><b>{{rejectedCount}}</b> </p>
+        <p class="grid-header">Rejected </p>
+      </div>
+    </div>
+  </div>
+
+  <br><br><br>
+
+  <!-- search bar and add button -->
+  <div class="search-and-add row">
+    <div class="col-md-3">
+      <input #filterValue (keyup)="applyFilter(filterValue.value)" aria-label="Search" class="form-control search-box"
+        placeholder="Search Employees" type="text">
+      <i class="fas fa-search"></i>
+    </div>
+
+
+    <div class="add-button-div col-md-2">
+      <div (click)="addForm()" class="button top-margin-0 cursor-pointer">ADD NEW</div>
+    </div>
+  </div>
+
+
+
+  <br>
+
+  <div class="table-container  mat-elevation-z8">
+    <table class="table-responsive" (matSortChange)="onSortChange()" [dataSource]="dataSource" mat-table matSort
+      multiTemplateDataRows>
+
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Employee Name</th>
+        <td *matCellDef="let element" mat-cell> {{element.candidateDetails?.name?.fullName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="profile">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Designation</th>
+        <td *matCellDef="let element" mat-cell> {{element.candidateDetails?.designation?.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateOfJoining">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>D.O.J.</th>
+        <td *matCellDef="let element" mat-cell> {{getDate(element?.candidateDetails?.doj)}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="currentStatus">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Current Status</th>
+        <td *matCellDef="let element" mat-cell class="current-status"> {{element.currentStatus?.value}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nextStatus">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Next Action</th>
+
+        <td *matCellDef="let element" mat-cell>
+
+          <span *ngIf="element.nextAction==null">N.A.</span>
+          <div *ngFor="let i=index;let action of element.nextAction ">
+            <div
+              (click)="$event.stopPropagation();getActionPage(action.screenId,element._id,'x',element.candidateDetails.professionalExperience,action,i)"
+              class="action-style">
+              {{action.name}}
+            </div>
+          </div>
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="options">
+        <th *matHeaderCellDef mat-header-cell mat-sort-header>Options</th>
+        <td *matCellDef="let element" mat-cell>
+
+          <span>
+            <a (click)="onUpdate(element._id,element)" class="link-style" data-toggle="tooltip" title="Edit Candidate">
+
+              <i class="far fa-edit font-style edit-color"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <a (click)="$event.stopPropagation();openModal(element._id)" class="link-style" data-toggle="tooltip" title="Delete Candidate">
+              <i class="fas fa-trash-alt font-style delete-color"></i>
+            </a> &nbsp;&nbsp;&nbsp;&nbsp;
+            <a *ngIf="!flagRejected" (click)="$event.stopPropagation();openModal2(element._id)" class="link-style" data-toggle="tooltip" title="Reject Candidate">
+              <i class="fas fa-user-slash font-style reject-color"></i>
+            </a>
+          </span>
+
+        </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="expandedDetail">
+        <td *matCellDef="let element" [attr.colspan]="columnsToDisplay.length" mat-cell>
+          <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'" class="example-element-detail">
+
+            <div class="pop-up-row-div-container">
+              <div>
+                <span class="pop-down-row-heading">EMAIL - </span>
+                <span>{{element.candidateDetails?.email}}</span>
+              </div>
+              <div>
+                <span class="pop-down-row-heading">MOBILE - </span>
+                <span> {{element.candidateDetails?.primaryContactNumber}}</span>
+              </div>
+              <div>
+                <span class="pop-down-row-heading">APPLICATION DATE - </span>
+                <span>{{getDate(element.candidateDetails?.dateOfJoining)}}</span>
+              </div>
+            </div>
+
+
+            <mat-horizontal-stepper labelPosition="bottom" [selectedIndex]="element.status.length">
+              <ng-template matStepperIcon="number" let-index="index">
+                <mat-icon>check</mat-icon>
+              </ng-template>
+              <ng-template matStepperIcon="edit" let-index="index">
+                <mat-icon>arrow_right_alt</mat-icon>
+              </ng-template>
+              <!-- <mat-step [label]="status.name" *ngFor="let status of fresherStatus; let i = index"
+                [completed]="i < element.status.length">
+              </mat-step>	               -->
+            </mat-horizontal-stepper>
+          </div>
+        </td>
+      </ng-container>
+
+
+      <tr *matHeaderRowDef="columnsToDisplay" mat-header-row></tr>
+      <tr (click)="expandedElement = expandedElement === element ? null : element"
+        *matRowDef="let element; columns: columnsToDisplay;" [class.example-expanded-row]="expandedElement === element"
+        class="example-element-row" mat-row>
+      </tr>
+      <tr *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row" mat-row></tr>
+
+    </table>
+    <mat-paginator class="width100p" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  </div>
+</div>
+
+
+<!-- modal for GEC -->
+
+<prompt-modal *ngIf="toggleModalGec" [gecFlag]="'true'" [modalTitleText]="modalTitleText"
+  [modalBodyText]="modalBodyText" [acceptText]="'Confirm'" [rejectText]="'Cancel'"
+  (acceptEvent)="mail=$event; confirm()" (hideModalEvent)="toggleModalGec=!toggleModalGec">
+
+</prompt-modal>
+
+<!--modal for next action triggers  -->
+<prompt-modal *ngIf="toggleModal" [modalTitleText]="modalTitleText" [modalBodyText]="modalBodyText"
+  [acceptText]="'Confirm'" [rejectText]="'Cancel'" (acceptEvent)=" confirm()"
+  (hideModalEvent)="toggleModal=!toggleModal">
+
+</prompt-modal>
+
+<!-- modal for delete icon -->
+
+<prompt-modal *ngIf="toggleModalDel" [modalTitleText]="modalTitleText" [modalBodyText]="modalBodyText"
+  [acceptText]="'Yes'" [rejectText]="'No'" (acceptEvent)="delete()" (hideModalEvent)="toggleModalDel=!toggleModalDel">
+
+</prompt-modal>
+
+<!-- modal for reject icon -->
+
+<prompt-modal *ngIf="toggleModalRej" [rejectFlag]="'true'" [modalTitleText]="modalTitleText"
+  [modalBodyText]="modalBodyText" [acceptText]="'Yes'" [rejectText]="'No'"
+  (acceptEvent)="rejectedReason=$event; reject()" (hideModalEvent)="toggleModalRej=!toggleModalRej">
+
+</prompt-modal>
+
+

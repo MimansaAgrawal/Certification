@@ -1,0 +1,54 @@
+<div class="card m-3 justify-content-center upload-doc-card" >
+  <!-- Card Heading -->
+  <h5 class="card-header upload-doc-card-header" >5) Educational Qualification Details</h5>
+  <!-- Card body -->
+  <div class="card-body">
+
+    <form [formGroup]="documentService.educationalQualificationDetailsForm">
+      <h3>High School Details</h3>
+
+      <div class ="row">
+        <div class ="col-md-6 col-12">
+      <div class="form-row">
+        <div class="form-group col-md-11">
+          <label for="grade10marks">Grade 10 marks(%)<span class="required">*</span></label>
+          <input type="text" class="form-control" id="grade10marks" formControlName="grade10marks"
+            [ngClass]="{'is-invalid':documentService.educationalQualificationDetailsForm.get('grade10marks').errors
+          && (documentService.educationalQualificationDetailsForm.get('grade10marks').touched|| documentService.educationalQualificationDetailsForm.get('grade10marks').dirty) }">
+          <span class=" text-danger"
+            *ngIf="documentService.educationalQualificationDetailsForm.get('grade10marks').errors
+      && (documentService.educationalQualificationDetailsForm.get('grade10marks').touched|| documentService.educationalQualificationDetailsForm.get('grade10marks').dirty)">
+            <span *ngIf="documentService.educationalQualificationDetailsForm.get('grade10marks').errors.required">
+              Grade 10 marks is required
+            </span>
+          </span>
+          <span  class=" text-danger" *ngIf ="documentService.educationalQualificationDetailsForm.get('grade10marks').errors?.pattern">
+            Invalid format for percentage
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class ="col-md-6 col-12">
+
+      <div class="form-row">
+        <div class="form-group col-md-11">
+          <label for="grade12marks">Grade 12 marks(%)<span class="required">*</span></label>
+          <input type="text" class="form-control" id="grade12marks" formControlName="grade12marks"
+            [ngClass]="{'is-invalid':documentService.educationalQualificationDetailsForm.get('grade12marks').errors
+          && (documentService.educationalQualificationDetailsForm.get('grade12marks').touched|| documentService.educationalQualificationDetailsForm.get('grade12marks').dirty) }">
+          <span class=" text-danger"
+            *ngIf="documentService.educationalQualificationDetailsForm.get('grade12marks').errors
+          && (documentService.educationalQualificationDetailsForm.get('grade12marks').touched|| documentService.educationalQualificationDetailsForm.get('grade12marks').dirty)">
+            <span *ngIf="documentService.educationalQualificationDetailsForm.get('grade12marks').errors.required">
+              Grade 12 marks is required
+            </span>
+          </span>
+          <span  class=" text-danger" *ngIf ="documentService.educationalQualificationDetailsForm.get('grade12marks').errors?.pattern">
+            Invalid format for percentage
+          </span>
+        </div>
+      </div>
+      </div>
+  </div>
+    </form>
+

@@ -1,0 +1,496 @@
+<!-- <div class="header-margin-bottom">
+  <common-header *ngIf = "add" [heading]="'ADD CERTIFICATION'"></common-header>
+  <common-header *ngIf = "!add" [heading]="'UPDATE EMPLOYEE DATA'"></common-header>
+</div> -->
+<div class="myRow">
+  <div class="col-md-9 offset-md-1 offset-1 col-9 top-margin">
+    <div class="heading">
+      <a class="cursor-pointer text-dark" (click)="onGrid()">
+        <i class="left-arrow fas fa-arrow-left"></i>
+      </a>
+      {{add ? 'Add Certification' : 'Update Certification'}}
+    </div>
+  </div>
+</div>
+<br />
+<mat-card class="white-card">
+  <div class="wrapper top-padding" class="fit-content">
+    <form [formGroup]="signupForm">
+      <div class="myRow">
+        <!-- Input field for department name  -->
+        <ng-container *ngIf="isUser(); else elseBlock" >
+          <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class="input-heading">Department</div>
+
+            <input
+              formControlName="deptName"
+              type="text"
+              class="input input-shadow"
+              placeholder="Department Name"
+              disabled="true"
+            />
+
+            <div
+              *ngIf="f.deptName.touched && f.deptName.value == ''"
+              class="alertmsg"
+            >
+              <!-- <div *ngIf="f.deptName.errors.required" class="req"> -->
+              <label class="text-danger">Department is required.</label>
+
+              <!-- </div> -->
+            </div>
+          </div>
+
+          <!-- Input field for team name  -->
+
+          <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class="input-heading">Team</div>
+
+            <input
+            formControlName="team"
+            type="text"
+            class="input input-shadow"
+            placeholder="Team Name"
+            disabled = "true"
+          />
+
+            <div *ngIf="f.team.touched && f.team.value == ''" class="alertmsg">
+              <!-- <div *ngIf="f.team.errors.required" class="req"> -->
+              <label class="text-danger"> Team is required. </label>
+              <!-- </div> -->
+            </div>
+          </div>
+
+          <!-- Input field for resource name  -->
+
+          <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class="input-heading">Employee Name</div>
+
+            <input
+            formControlName="empName"
+            type="text"
+            class="input input-shadow"
+            placeholder="Employee Name"
+            disabled = "true"
+          />
+
+            <div
+              *ngIf="f.empName.touched && f.empName.value == ''"
+              class="alertmsg"
+            >
+              <!-- <div *ngIf="f.empName.errors.required" class="req"> -->
+              <label class="text-danger"> Employee Name is required. </label>
+              <!-- </div> -->
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #elseBlock>
+          <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class="input-heading">Department</div>
+
+            <div class="box input-shadow dropdown">
+              <ngx-select-dropdown
+                formControlName="deptName"
+                [multiple]="false"
+                [config]="config"
+                [options]="departments"
+                (change)="onDepartmentSelected(f.deptName.value)"
+                [disabled] ="certificationService.updateFlag"
+                >
+              </ngx-select-dropdown>
+            </div>
+            <div
+              *ngIf="f.deptName.touched && f.deptName.value == ''"
+              class="alertmsg"
+            >
+              <!-- <div *ngIf="f.deptName.errors.required" class="req"> -->
+              <label class="text-danger">Department is required.</label>
+
+              <!-- </div> -->
+            </div>
+          </div>
+
+          <!-- Input field for team name  -->
+
+          <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class="input-heading">Team</div>
+
+            <div class="box input-shadow dropdown">
+              <ngx-select-dropdown
+                formControlName="team"
+                [disabled]="teamDropdownDisabled"
+                [multiple]="false"
+                [config]="config"
+                [options]="teams"
+                (change)="onTeamSelected(f.deptName.value, f.team.value)"
+              >
+              </ngx-select-dropdown>
+            </div>
+            <div *ngIf="f.team.touched && f.team.value == ''" class="alertmsg">
+              <!-- <div *ngIf="f.team.errors.required" class="req"> -->
+              <label class="text-danger"> Team is required. </label>
+              <!-- </div> -->
+            </div>
+          </div>
+
+          <!-- Input field for resource name  -->
+
+          <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class="input-heading">Employee Name</div>
+
+            <div class="box input-shadow dropdown">
+              <ngx-select-dropdown
+                formControlName="empName"
+                [disabled]="employeeDropdownDisabled"
+                (change)="onEmployeeNameSelected(f.empName.value)"
+                [multiple]="false"
+                [config]="config"
+                [options]="employees"
+              >
+              </ngx-select-dropdown>
+            </div>
+            <div
+              *ngIf="f.empName.touched && f.empName.value == ''"
+              class="alertmsg"
+            >
+              <!-- <div *ngIf="f.empName.errors.required" class="req"> -->
+              <label class="text-danger"> Employee Name is required. </label>
+              <!-- </div> -->
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- input filed for certification -->
+<!--
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">Certificate/Training/Self Study</div>
+
+          <input
+            formControlName="certificate"
+            id="certificate"
+            type="text"
+            class="input input-shadow"
+            placeholder="Certificate"
+            [ngClass]="{'border-color': f.certificate.touched && f.certificate.value == ''}"
+
+          />
+
+          <div
+            *ngIf="f.certificate.touched && f.certificate.value == ''"
+            class="alertmsg"
+          >
+            <div *ngIf="f.certificate.errors.required" class="req">
+            <label class="text-danger"> Certificate is required. </label>
+            </div>
+
+            <div *ngIf="f.certificate.errors.pattern" class="req">
+                Please, Enter Valid Certificate.
+              </div>
+          </div>
+        </div> -->
+
+        <!-- input filed for classification -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">Classification</div>
+
+          <input
+            formControlName="classification"
+            id="classification"
+            type="text"
+            class="input input-shadow"
+            placeholder="Classification"
+            [ngClass]="{'border-color': f.classification.touched && f.classification.value == ''}"
+
+          />
+
+          <div
+            *ngIf="f.classification.touched && f.classification.value == ''"
+            class="alertmsg"
+          >
+            <!-- <div *ngIf="f.classification.errors.required" class="req"> -->
+            <label class="text-danger"> Classification is required. </label>
+            <!-- </div> -->
+
+            <!-- <div *ngIf="f.classification.errors.pattern" class="req">
+                Please, Enter Valid Classification.
+              </div> -->
+          </div>
+        </div>
+        <!-- input filed for Technology -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">Technology</div>
+
+          <input
+            formControlName="technology"
+            id="technology"
+            type="text"
+            class="input input-shadow"
+            placeholder="Technology"
+            [ngClass]="{'border-color': f.technology.touched && f.technology.value == ''}"
+
+          />
+
+          <div
+            *ngIf="f.technology.touched && f.technology.value == ''"
+            class="alertmsg"
+          >
+            <!-- <div *ngIf="f.technology.errors.required" class="req"> -->
+            <label class="text-danger"> Technology is required. </label>
+            <!-- </div> -->
+
+            <!-- <div *ngIf="f.technology.errors.pattern" class="req">
+                Please, Enter Valid Technology Name.
+              </div> -->
+          </div>
+        </div>
+
+        <!-- input filed for Certificate name -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">Certificate Name/ Training</div>
+
+          <input
+            formControlName="certName"
+            id="certName"
+            type="text"
+            class="input input-shadow"
+            placeholder="Certificate Training"
+            [ngClass]="{'border-color': f.certName.touched && f.certName.value == ''}"
+
+          />
+
+          <div
+            *ngIf="f.certName.touched && f.certName.value == ''"
+            class="alertmsg"
+          >
+            <!-- <div *ngIf="f.certName.errors.required" class="req"> -->
+            <label class="text-danger"> Certificate Name is required. </label>
+            <!-- </div>
+
+              <div *ngIf="f.certName.errors.pattern" class="req">
+                Please, Enter Valid Certificate Name.
+              </div> -->
+          </div>
+        </div>
+
+        <!-- input filed for Certificate provider -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">Certification Provider</div>
+
+          <input
+            formControlName="certProv"
+            id="certProv"
+            type="text"
+            class="input input-shadow"
+            placeholder="Certificate Provider"
+            [ngClass]="{'border-color': f.certProv.touched && f.certProv.value == ''}"
+
+          />
+
+          <div
+            *ngIf="f.certProv.touched && f.certProv.value == ''"
+            class="alertmsg"
+          >
+            <!-- <div *ngIf="f.certProv.errors.required" class="req"> -->
+            <label class="text-danger">
+              Certification Provider is required.
+            </label>
+            <!-- </div>
+
+              <div *ngIf="f.certProv.errors.pattern" class="req">
+                Please, Enter Valid Certification Provider Name.
+              </div> -->
+          </div>
+        </div>
+
+        <!-- input field for certification completion  -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">Completion Date</div>
+
+          <input
+            formControlName="compDate"
+            id="compDate"
+            type="date"
+            class="input input-shadow"
+            (change)="dateValue()"
+            [ngClass]="{'border-color': f.compDate.touched && f.compDate.value == ''}"
+          />
+          <div
+            *ngIf="f.compDate.touched && f.compDate.value == ''"
+            class="alertmsg"
+          >
+            <!-- <div *ngIf="f.compDate.errors.required" class="req"> -->
+            <label class="text-danger"> Date is required.</label>
+            <!-- </div> -->
+          </div>
+        </div>
+
+        <!-- input field for certification validity  -->
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">Valid through</div>
+
+          <input
+            formControlName="validDate"
+            id="validDate"
+            type="date"
+            class="input input-shadow"
+            [ngClass]="{'border-color': f.validDate.touched && f.validDate.value == ''}"
+
+          />
+
+          <div
+            *ngIf="f.validDate.touched && f.validDate.value == ''"
+            class="alertmsg"
+          >
+            <!-- <div *ngIf="f.validDate.errors.required" class="req"> -->
+            <label class="text-danger"> Date is required. </label>
+            <!-- </div> -->
+          </div>
+        </div>
+        <!-- Input field for Name -->
+        <!--
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">NAME</div>
+
+          <input formControlName="name" id="name" type="text" class="input input-shadow" placeholder="Name" />
+
+          <div *ngIf="f.name.touched && f.name.invalid" class="alertmsg">
+
+            <div *ngIf="f.name.errors.required" class="req">
+              Name is required.
+            </div>
+
+            <div *ngIf="f.name.errors.pattern" class="req">
+              Please, Enter Valid Name.
+            </div>
+          </div>
+        </div>
+
+
+
+        input field for mobile number
+
+        <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">PHONE NUMBER</div>
+          <input formControlName="phoneNumber" id="phoneNumber" type="text" class="input input-shadow"
+            placeholder="Phone Number" maxlength="10" />
+
+          <div *ngIf="f.phoneNumber.touched && f.phoneNumber.invalid" class="alertmsg">
+            <div *ngIf="f.phoneNumber.errors.required" class="req">
+              Mobile Number is required.
+            </div>
+
+            <div *ngIf="f.phoneNumber.errors.pattern" class="req">
+              Please Enter valid Mobile Number.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- input field for offer release date -->
+
+        <!-- <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+          <div class="input-heading">OFFER RELEASE DATE</div>
+
+          <input *ngIf="add" formControlName="dateOfOffer" id="dateOfOffer" type="date" class="input input-shadow" />
+
+          <input *ngIf="!add" formControlName="dateOfOffer" id="dateOfOffer" type="date" class="input input-shadow"
+           [(ngModel)]="fillOfferDate" />
+
+          <div *ngIf="f.dateOfJoining.touched && f.dateOfJoining.invalid" class="alertmsg">
+            <div *ngIf="f.dateOfJoining.errors.required" class="req">
+              Date is required.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Input field for email -->
+
+        <!-- <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+          <div class="input-heading">EMAIL</div>
+
+          <input formControlName="email" id="email" type="text" class="input input-shadow" placeholder="Email" />
+
+          <div *ngIf="f.email.touched && f.email.invalid" class="alertmsg">
+            <div *ngIf="f.email.errors.required" class="req">
+              Email is required.
+            </div>
+
+            <div *ngIf="f.email.errors.email" class="req">
+              Please, enter valid email address.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- input field for Experience -->
+        <!-- <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+          <div class="input-heading">EXPERIENCE</div>
+
+          <div>
+            <mat-radio-group aria-label="Select an option" formControlName="experienceStatus" class="left-margin"
+              >
+              <mat-radio-button value="f" (change)="changeRadio($event.value); resetDesignation();">Fresher</mat-radio-button>
+              <mat-radio-button value="l" (change)="changeRadio($event.value); resetDesignation();">Lateral</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div *ngIf="f.experienceStatus.touched && f.experienceStatus.invalid" class="alertmsg">
+            <div *ngIf="f.experienceStatus.errors.required" class="req">
+              Experience is required.
+            </div>
+          </div>
+        </div> -->
+
+        <!-- input field for designation -->
+
+        <!-- <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+          <div class="input-heading">DESIGNATION</div>
+
+          <div class="box input-shadow dropdown">
+            <ngx-select-dropdown formControlName="designation" [multiple]="false" [config]="config" [options]="Designation"
+              >
+            </ngx-select-dropdown>
+          </div>
+        </div> -->
+
+        <!-- input field for Address -->
+
+        <!-- input field for hr -->
+
+        <!-- <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+          <div class="input-heading">HR</div>
+
+          <div class="box input-shadow dropdown">
+            <ngx-select-dropdown formControlName="hrSpoc" [multiple]="false" [config]="config" [options]="allHr"
+              >
+            </ngx-select-dropdown>
+          </div>
+        </div>-->
+      </div>
+
+      <div *ngIf="add" class="text-center">
+        <button
+          class="text-center button button-margin-bottom"
+          type="submit"
+          (click)="submit()"
+        >
+          ADD
+        </button>
+      </div>
+      <div *ngIf="!add" class="text-center">
+        <button
+          class="text-center button button-margin-bottom"
+          type="submit"
+          (click)="submit()"
+        >
+          UPDATE
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-card>

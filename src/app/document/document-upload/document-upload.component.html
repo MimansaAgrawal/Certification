@@ -1,0 +1,77 @@
+<div class="container-fluid bg-light mb-4" >
+
+
+  <div class="container table-responsive">
+
+    <table class="table borderless">
+      <tbody>
+      <tr *ngFor="let row of rowArray; index as i">
+        <th scope="row" class="row-array">{{ row.name }} <span class="text-danger" *ngIf="row.isRequired">*</span> </th>
+        <td>{{ row.description|titlecase }}</td>
+        <td>
+
+
+              <svg width="2em" height="3em" (click)="row.toggleModal = !row.toggleModal" [class.toolbar-icon]='docIdNew.indexOf(row._id)==-1' viewBox="0 0 16 16" class="bi bi-eye" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"/>
+                <path fill-rule="evenodd" d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+              </svg>
+              <file-modal *ngIf = "row.toggleModal" [myObj] = "myObj"
+              [inputfilename] = "responseFileNames[i]" [inputDoc]="row._id" (hideModalEvent) = "row.toggleModal = !row.toggleModal"></file-modal>
+
+
+
+        </td>
+
+        <td class="border-left-0">
+
+                    <div class=" uploadFile">
+                      <label class = "buttonUpload" for="{{i}}"  >UPLOAD</label>
+                      <span class ="uploadText" >{{file1.files[0]?.name ? file1.files[0]?.name : 'No File Choosen(' +row.extensionAccepted.join() +')'}}</span>
+
+                            <input type="file" class="d-none" (change)="fileChanged($event,docId1=row._id,name1=row.name, i)"
+                  accept={{row.extensionAccepted.join()}} accept="application/pdf"  #file1 id="{{i}}"
+                   [disabled] ="this.acceptedDoc.indexOf(row._id) !== -1"
+                                   />
+
+                </div>
+        </td>
+        <td class ="lastcol">
+            <span *ngIf="docIdNew.indexOf(row._id)==-1">
+              <button type="button" class="btn btn-outline-warning dot1">Pending</button>
+            </span>
+          <span *ngIf="!(docIdNew.indexOf(row._id)==-1)">
+              <span *ngFor="let rec of records">
+
+                <span *ngIf="rec.docId==row._id && rec.reject==false">
+              <button type="button" class="btn btn-outline-success dot1" >Accepted</button>
+
+                </span>
+                <span *ngIf="rec.docId==row._id && rec.reject==true">
+              <button type="button" class="btn btn-outline-danger "
+              placement="top" [ngbTooltip]="rec.reason" tooltipClass="tooltip"
+              >Rejected <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></button>
+
+                  <!-- &nbsp; -->
+
+                  <!-- <br> -->
+                  <!-- <input type="text" value={{rec.reason}} class="record-reason"> -->
+                </span>
+
+              </span>
+            </span>
+
+        </td>
+
+      </tr>
+
+      </tbody>
+    </table>
+
+    <div class="form-check py-4">
+      <input type="checkbox" class="form-check-input " id="consentForDoc" (change)="flagForDoc()">
+      <label class="form-check-label " for="consentForDoc">Documents not uploaded are not with me.</label>
+    </div>
+
+
+  </div>
+</div>

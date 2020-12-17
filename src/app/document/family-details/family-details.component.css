@@ -1,0 +1,40 @@
+.forcheckbox{
+  justify-content: space-around !important;
+  display: contents !important;
+  align-items: center !important;
+}
+.form-group{
+  height: 75px;
+}
+
+.add-sibling-icon{
+  font-size: 20px;
+  color: green;
+  cursor: pointer;
+}
+.remove-sibling-icon{
+  font-size: 19px;
+  color:red;
+  cursor: pointer;
+}
+.invalid-msg{
+  margin-left: 15px;
+}
+.form-control{
+  border-radius: 7px;
+  padding-top: 1.4em;
+  padding-bottom: 1.7em;
+  /* border: 1px solid #A26ECA !important;
+  box-shadow: 1px 1px #5C45A0 !important; */
+}
+input[type="radio"] {
+  width: auto !important;
+  height: auto !important;
+  background: white;
+  font-size: 10px;
+  font-weight: 600;
+
+}
+label{
+  vertical-align: middle !important;
+}

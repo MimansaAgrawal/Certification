@@ -1,0 +1,274 @@
+<div class = "details-container">
+
+  <form [formGroup]="bankDetailsForm" class="wrapper background-white myRow ">
+    <mat-card class="mat-card-width">
+      <mat-card-title class="mat-card-style">3) Insurance Details</mat-card-title>
+      <!-- <form [formGroup]="bankDetailsForm"> -->
+  
+      <div class="row ">
+  
+        <!-- Input field for name -->
+  
+        <div class="form-group col-md-4 offset-md-1 editText top-padding1 ">
+          <div for="name"  class="left-align"><b class="input-heading">NAME</b></div>
+          <input formControlName="name" id="name" type="text" class="input input-shadow disabled" disabled>
+        </div>
+  
+        <!-- input field for gender -->
+        <!-- <div class="form-group col-md-4 offset-md-1 editText top-padding1 ">
+          <div for="gender"  class="left-align"><b class="input-heading">GENDER</b></div>
+          <input formControlName="gender" id="gender" type="text" class="input input-shadow disabled" disabled>
+        </div> -->
+  
+        <div class="form-group col-md-4 offset-md-1 editText top-padding1">
+          <div  for="gender" class="left-align"><b class="input-heading">GENDER</b></div>
+          <mat-select formControlName="gender" id="gender" class="input-shadow input disabled" panelClass="mat-select-content" disabled>
+            <mat-option value="M" >Male </mat-option>
+            <mat-option value="F">Female</mat-option>
+            <mat-option value="T">Transgender</mat-option>
+          </mat-select>
+        </div>
+  
+      </div>
+  
+  
+      <div class="row ">
+  
+        <!-- Input field for date of joining -->
+  
+        <div class="form-group col-md-4 offset-md-1 editText top-padding">
+          <div for="dateOfJoining" class="left-align"><b class="input-heading">DATE OF JOINING</b></div>
+          <input formControlName="dateOfJoining" id="dateOfJoining" type="text"
+            class="input input-shadow disabled" disabled>
+        </div>
+  
+        <!-- input field for designation -->
+  
+        <div class="form-group col-md-4 offset-md-1 editText top-padding">
+          <div for="desig" class="left-align"><b class="input-heading">DESIGNATION</b></div>
+          <input formControlName="desig" id="desig" type="text" class="input input-shadow disabled" disabled>
+        </div>
+  
+      </div>
+  
+  
+      <div class="row">
+  
+        <!-- Input field for phone no -->
+  
+        <div class="form-group col-md-4 offset-md-1 editText top-padding">
+          <div for="bName" class="left-align"><b class="input-heading">PHONE NO</b></div>
+          <input formControlName="phone" id="phone" type="text" class="input input-shadow disabled" disabled>
+        </div>
+  
+        <!-- input field for date of birth -->
+  
+        <div class="form-group col-md-4 offset-md-1 editText top-padding">
+          <div for="dob" class="left-align"><b class="input-heading">DATE OF BIRTH</b></div>
+          <input formControlName="dob" id="dob" type="text" class="input input-shadow disabled" disabled>
+        </div>
+  
+      </div>
+  
+  
+      <div class="row ">
+  
+        <!-- Input field for marital status -->
+  
+        <div class="form-group col-md-4 offset-md-1 editText top-padding">
+          <div class="required-field" for="mStatus" class="left-align"><b class="input-heading">MARITAL STATUS</b></div>
+          <mat-select placeholder="Select Marital Status" formControlName="mStatus" id="mStatus"
+            class="input input-shadow select disabled" disabled>
+            <mat-option value="Unmarried">Single</mat-option>
+            <mat-option value="Married">Married</mat-option>
+            <mat-option value="Widowed">Widowed</mat-option>
+            <mat-option value="Divorced">Divorced</mat-option>
+          </mat-select>
+        </div>
+  
+        <!-- Input field for spouse name -->
+  
+        <!-- <div class="form-group col-md-4 offset-md-1 editText top-padding" *ngIf="bankDetailsForm.value.mStatus=='married'">
+          <div class="required-field" for="sName" class="left-align"><b class="input-heading">SPOUSE NAME</b></div>
+          <input formControlName="sName" id="sName" type="text" placeholder="Spouse Name"
+            class="input input-shadow" disabled>
+          <div *ngIf="f.sName.touched && f.sName.invalid" class="alertmsg">
+            <div *ngIf="f.sName.errors.required" class="req">Spouse Name is required.</div>
+            <div *ngIf="f.sName.errors.pattern" class="req">Please, Enter Valid Name.</div>
+          </div>
+        </div> -->
+  
+      </div>
+  
+  
+      <div *ngIf="bankDetailsForm.value.mStatus=='Married'">
+  
+        <div class="row ">
+          <!-- Input field for spouse name -->
+  
+          <div class="form-group col-md-4 offset-md-1 editText top-padding">
+                  <div class="left-align" for="sName"><b class="input-heading">SPOUSE NAME</b></div>
+  
+                  <input formControlName="sName" id="sName" type="text" class="input-shadow input disabled"
+                      placeholder="Spouse Name" disabled>
+  
+                  <div *ngIf="f.sName.touched && f.sName.invalid" class="alertmsg">
+  
+                      <div *ngIf="f.sName.errors.required" class="req">Spouse Name is required.</div>
+  
+                      <div *ngIf="f.sName.errors.pattern" class="req">Please, Enter Valid Name.</div>
+  
+                  </div>
+  
+              </div>
+  
+          <!-- input field for spouse gender -->
+  
+          <div class="form-group col-md-4 offset-md-1 editText top-padding">
+            <div class="required-field" for="sGender" class="left-align"><b class="input-heading">SPOUSE GENDER</b></div>
+            <mat-select placeholder="Select Gender" formControlName="sGender" id="sGender" class="input-shadow input"
+              >
+              <mat-option value="M">Male</mat-option>
+              <mat-option value="F">Female</mat-option>
+              <mat-option value="T">Transgender</mat-option>
+            </mat-select>
+          </div>
+  
+          <!-- Input field for Spouse DOB -->
+  
+          <div class="form-group col-md-4 offset-md-1 editText top-padding">
+            <div class="required-field" for="sdob" class="left-align"><b class="input-heading">SPOUSE DATE OF BIRTH</b></div>
+            <input formControlName="sdob" id="sdob" type="date" class="input input-shadow"
+               value="{{today | date:'yyyy-MM-dd'}}">
+          </div>
+  
+        </div>
+  
+  
+       
+  
+        <div formArrayName="children">
+          <div *ngFor="let item of allChildren.controls; let pointIndex=index" [formGroupName]="pointIndex">
+  
+            <div class="row top-padding">
+  
+              <!-- Input field for child name -->
+  
+              <div class="form-group col-md-4 offset-md-1 editText top-padding">
+                <div class="required-field" for="name" class="left-align"><b class="input-heading">CHILD NAME</b></div>
+                <input formControlName="name" id="name" type="text" class="input input-shadow"
+                  placeholder="Child Name">
+                <div
+                  *ngIf="allChildren.controls[pointIndex].get('name').touched && allChildren.controls[pointIndex].get('name').invalid"
+                  class="alertmsg">
+                  <div *ngIf=" allChildren.controls[pointIndex].get('name').errors && allChildren.controls[pointIndex].get('name').errors.required" class="req">Child Name is
+                    required.</div>
+                  <div *ngIf="allChildren.controls[pointIndex].get('name').errors.pattern" class="req">Please, Enter Valid
+                    Name.</div>
+                </div>
+              </div>
+  
+              <!-- input field for child gender -->
+  
+              <div class="form-group col-md-4 offset-md-1 editText top-padding">
+                <div class="required-field" for="gender" class="left-align"><b class="input-heading">CHILD GENDER</b></div>
+                <mat-select placeholder="Select Gender" formControlName="gender" id="gender"
+                  class="input input-shadow">
+                  <mat-option value="M">Male</mat-option>
+                  <mat-option value="F">Female</mat-option>
+                  <mat-option value="T">Transgender</mat-option>
+                </mat-select>
+              </div>
+  
+            </div>
+  
+            <div class="row ">
+  
+              <!-- Input field for child DOB -->
+  
+              <div class="form-group col-md-4 offset-md-1 editText top-padding">
+                <div class="required-field" for="dob" class="left-align"><b class="input-heading">CHILD DATE OF BIRTH</b></div>
+                <input formControlName="dob" id="dob" type="date" class="input input-shadow"
+                  max="{{today | date:'yyyy-MM-dd'}}">
+              </div>
+  
+            </div>
+  
+            <button class="button2 delete-child"  (click)="deleteChildren(pointIndex)" >DELETE
+              CHILD</button>
+          </div>
+          <button class="button add-child"  (click)="addChildren()" >ADD CHILD</button>
+        </div>
+      </div>
+  
+      <div class="row ">
+  
+        <!-- Input field for parents policy -->
+  
+        <div class="form-group col-md-10 offset-md-1 editText top-padding">
+          <div class="required-field col-md-5  col-10 emp-position" for="addParents"><b class="input-heading" >Do You Want To Add Your Parents To The Policy?
+              (Premium to be paid by the employee only)
+            </b></div>
+          <mat-radio-group formControlName="addParents" id="addParents" class="form-control col-md-5" >
+            <mat-radio-button value="true">Yes</mat-radio-button>
+            <mat-radio-button value="false" [checked]="true">No</mat-radio-button>
+          </mat-radio-group>
+  
+        </div>
+  
+      </div>
+  
+  
+      <div *ngIf="bankDetailsForm.value.addParents=='true'">
+        <div class="row">
+  
+           <!-- Input field for father's name -->
+  
+        <div class="form-group col-md-4 offset-md-1 editText top-padding" *ngIf="bankDetailsForm.value.addParents=='true'">
+          <div class="required-field" for="fName" class="left-align"><b class="input-heading">FATHER'S NAME</b></div>
+          <input formControlName="fName" id="fName" type="text" class="input input-shadow disabled" placeholder="Father's Name" disabled>
+        </div>
+  
+          <!-- Input field for Father's DOB -->
+  
+          <div class="form-group col-md-4 offset-md-1 editText top-padding">
+            <div class="required-field" for="fdob" class="left-align"><b class="input-heading">FATHER'S DATE OF BIRTH</b></div>
+            <input formControlName="fdob" id="fdob" type="date" class="input input-shadow" max="{{today | date:'yyyy-MM-dd'}}">
+          </div>
+  
+  
+        </div>
+  
+        <div class="row">
+  
+  
+          <!-- Input field for mother's name -->
+  
+          <div class="form-group col-md-4 offset-md-1 editText top-padding">
+            <div class="required-field" for="fName" class="left-align"><b class="input-heading">MOTHER'S NAME</b></div>
+            <input formControlName="mName" id="mName" type="text" class="input input-shadow disabled" placeholder="Father's Name">
+          </div>
+  
+          <!-- Input field for Mother's DOB -->
+  
+          <div class="form-group col-md-4 offset-md-1 editText top-padding">
+            <div class="required-field" for="fdob" class="left-align"><b class="input-heading">MOTHER'S DATE OF BIRTH</b></div>
+  
+            <input formControlName="mdob" id="mdob" type="date" class="input input-shadow"  max="{{today | date:'yyyy-MM-dd'}}">
+  
+          </div>
+  
+        </div>
+      </div>
+  
+      <!-- </form> -->
+    </mat-card>
+    <!-- <div class="center text-center pt-10">
+      <div>
+        <button class="btn btn-primary btn-lg prev-button mr-1" type="button" (click)="prev()">PREVIOUS</button>
+        <button class="btn btn-secondary btn-lg next-button ml-1" type="button" [disabled]="!bankDetailsForm.valid"
+          (click)="next()">NEXT</button>
+      </div>
+    </div> -->
+  </form>
+</div>

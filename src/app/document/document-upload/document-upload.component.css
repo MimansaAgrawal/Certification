@@ -1,0 +1,161 @@
+.dot1 {
+  height: 30px;
+  width: 85px;
+  /* height: 15px;
+  width: 15px; */
+  /* background-color:yellow; */
+  /* border-radius: 50%;
+  display: inline-block; */
+}
+.toolbar-icon-disabled {
+  fill: gray;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.dot2 {
+  height: 15px;
+  width: 15px;
+  background-color: green;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot3 {
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+/* .table tr {
+  border-top: 2px solid #dee2e6 !important;
+} */
+.btn1 {
+  height: 30px;
+  width: 85px;
+  border: none !important;
+  background-color: #5c45a0 !important;
+  padding: 0.5rem 1rem;
+  font-size: none;
+  line-height: 0px !important;
+  border-radius: 0 !important;
+}
+.table td {
+  border-left: 1px solid #dee2e6;
+
+  /* border-right: 1px solid #000; */
+}
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn2 {
+  border: none !important;
+  color: white;
+  height: 30px;
+  width: 85px;
+  padding: 0.5rem 1rem;
+  background-color: blueviolet;
+  /* padding: 8px 20px; */
+  /* border-radius: 8px; */
+  /* font-size: 20px; */
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type="file"] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.box-shadow--2dp {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.box-shadow--3dp {
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2),
+    0 1px 8px 0 rgba(0, 0, 0, 0.12);
+}
+.box-shadow--4dp {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+.box-shadow--6dp {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
+    0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+.box-shadow--8dp {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+.box-shadow--16dp {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+input[type="file" i] {
+  /* -webkit-appearance: initial; */
+  background-color: white !important;
+  color: black;
+  cursor: default;
+  padding: 8px !important;
+}
+.table td {
+  padding: 0.7rem 0.1rem 0rem 0.1rem;
+}
+#custom-button {
+  padding: 10px;
+  color: white;
+  background-color: blueviolet;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.buttonUpload {
+  background-color: blueviolet;
+  color: white;
+  padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+  table tr:first-child td ,table tr:first-child th{
+    border-top: 0px !important;
+    }
+.uploadFile{
+display: flex;
+align-items: baseline;
+
+
+}
+table tr td ,table tr th{
+  padding-left:10px ;
+  padding-right: 10px;
+  }
+  table tr:nth-child(4) td{
+    width: 100%;
+    }
+.uploadText{
+  text-overflow: ellipsis;
+width: 220px;
+overflow: hidden;
+white-space: nowrap;
+}
+
+.row-array{
+  text-transform:uppercase;
+  font-weight: bold;
+}
+.record-reason{
+  border-color:red ;
+  border-radius: 5px;
+  width: 80%;
+  height: 100%;
+  text-align: center;
+}

@@ -1,0 +1,101 @@
+<div class="header-margin-bottom">
+  <common-header [heading]="'ASSET INFORMATION'"
+  [screenId] = "screenId"
+  [candidateId] = "candidateId"></common-header>
+</div>
+<mat-card class="white-card">
+
+  <show-candidate-details [fullData]="fullData" [inputfilename]="inputfilename" [myObj]="myObj" [inputDoc]="inputDoc">
+  </show-candidate-details>
+
+  <div class="wrapper height-styling" >
+    <div class="myRow">
+      <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+        <div class="input-heading">SYSTEM TYPE</div>
+        <input type="text" class="input input-shadow disabled" readonly="readonly" [value]="systemType" disabled />
+      </div>
+
+
+      <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+        <div class="input-heading">SOFTWARE INSTALLED</div>
+        <tag-input id="software" [ngModel]="softwareInstalled" [modelAsStrings]="true" [disable]="true">
+        </tag-input>
+      </div>
+
+      <form class="w-100" [formGroup]="assetInfoForm">
+        <div formArrayName="assetInfo">
+          <div *ngFor="let asset of assetInfo.controls; let pointIndex = index">
+            <div class="myRow array-border w-100" [formGroupName]="pointIndex">
+              <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+                <div class="input-heading">ASSET</div>
+                <!-- <input formControlName = "asset" type="text" class="input input-shadow"/> -->
+                <select formControlName="asset" class="input-shadow cursor-pointer">
+                  <option value="" selected>Select</option>
+                  <option *ngFor="let ast of assetList" [ngValue]="ast">{{ast}}</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+                <div class="input-heading">MAKE</div>
+                <input formControlName="make" type="text" class="input input-shadow" />
+              </div>
+
+              <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+                <div class="input-heading">MODEL</div>
+                <input formControlName="model" type="text" class="input input-shadow" />
+              </div>
+
+              <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+                <div class="input-heading">SERIAL NO</div>
+                <input formControlName="serialNo" type="text" class="input input-shadow" />
+              </div>
+
+              <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+                <div class="input-heading">ALLOCATED FROM</div>
+                <input formControlName="allocatedFrom" type="text" class="input input-shadow" />
+              </div>
+
+              <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+                <div class="input-heading">ASSIGNED BY</div>
+                <div class="box input-shadow dropdown">
+                  <ngx-select-dropdown formControlName="assignedBy"
+                    [multiple]="false" [config]="config"
+                    [options]="admins">
+                  </ngx-select-dropdown>
+                </div>
+              </div>
+              
+            </div>
+
+            <div class = "myRow buttons-container">
+              <i class="fas fa-minus-circle minus-button" (click)="deleteAsset(pointIndex)"></i>
+              <i class="fas fa-plus-circle plus-button" (click)="addAtIndex(pointIndex)"></i>
+            </div>
+          </div>
+          <div *ngIf = "assetInfo.controls.length == 0" class = "myRow buttons-container">
+            <i class="fas fa-plus-circle plus-button" (click)="addAsset()"></i>
+          </div>
+
+        </div>
+
+        <div  class="myRow w-100">
+
+          <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class="input-heading">SEAT NO</div>
+            <input formControlName="seatNo" type="text" class="input input-shadow" />
+          </div>
+
+          <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+            <div class="input-heading">T-SHIRT SIZE</div>
+            <input formControlName="tShirtSize" type="text" class="input input-shadow" />
+          </div>
+
+        </div>
+      </form>
+
+      <button class="text-center button cursor-pointer" (click)="submit(); printForm();">
+        SUBMIT
+      </button>
+    </div>
+  </div>
+</mat-card>

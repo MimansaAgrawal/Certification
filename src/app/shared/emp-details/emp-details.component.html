@@ -1,0 +1,39 @@
+<div class = "details-container">
+  <div *ngIf = "fullData" class="wrapper background-white myRow">
+    <mat-card>
+      <mat-card-title class="mat-card-style">1) Employee Details</mat-card-title>
+      <div class = "row background-white row-left-margin ">
+              <div class = "form-group col-md-4 offset-md-1 editText top-padding1 ">
+              <div class = "input-heading heading-padding required-field">NAME</div>
+              <input type="text" class = "input input-shadow disabled" readonly="readonly" value={{fullData?.candidateDetails?.name.fullName}} disabled />
+              </div>
+  
+              <div class = "form-group col-md-4 offset-md-1 editText top-padding1 ">
+              <div class = "input-heading heading-padding required-field">DATE OF JOINING</div>
+              <input type="text" class = "input input-shadow disabled" readonly="readonly" value="{{fullData?.candidateDetails?.doj | date : 'dd/MM/yyyy'}}" disabled />
+              </div>
+          
+              <div class = "form-group col-md-4 offset-md-1 editText top-padding1 ">
+              <div class = "input-heading heading-padding required-field">DESIGNATION</div>
+              <input type="text" class = "input input-shadow disabled" readonly="readonly" value={{fullData?.candidateDetails?.designation.name}} disabled />
+              </div>
+  
+              <div class = "form-group col-md-4 offset-md-1 editText top-padding1 ">
+              <div class = "input-heading heading-padding required-field">PROFILE</div>
+              <input type="text" class = "input input-shadow disabled" readonly="readonly" value={{fullData?.candidateDetails?.profile}} disabled />
+              </div>
+          
+              <div class = "form-group col-md-4 offset-md-1 editText top-padding1 ">
+              <div class = "input-heading heading-padding required-field">DATE OF OFFER</div>
+              <input type="text" class = "input input-shadow disabled" readonly="readonly" value="{{fullData?.candidateDetails?.offerDate | date : 'dd/MM/yyyy'}}" disabled />
+              </div>
+  
+              <div class = "form-group col-md-4 offset-md-1 editText top-padding1 ">
+              <div class = "input-heading heading-padding required-field">RESUME</div>
+              <div class = "box input-shadow disabled">{{inputfilename | fileName}}<i class="fas fa-eye eye-right" (click) = "toggleModal = !toggleModal"></i></div>
+              </div>
+      </div>
+    </mat-card>
+  </div>
+  <file-modal *ngIf = "toggleModal" [myObj] = "myObj" [inputfilename] = "inputfilename" [inputDoc]="inputDoc" (hideModalEvent) = "toggleModal = !toggleModal"></file-modal>
+</div>

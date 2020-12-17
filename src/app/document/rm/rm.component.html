@@ -1,0 +1,43 @@
+<div class = "header-margin-bottom">
+  <common-header [heading] = "'ASSIGN REPORTING MANAGER'"
+  [screenId] = "screenId"
+  [candidateId] = "candidateId"></common-header>
+</div>
+<mat-card class = "white-card">
+
+  <show-candidate-details
+  [fullData] = "fullData"
+  [inputfilename] = "inputfilename"
+  [myObj] = "myObj"
+  [inputDoc]="inputDoc"
+
+  (submitEvent) = "submit()"
+  >
+  </show-candidate-details>    
+
+  <div class="wrapper">
+      <div class = "myRow">
+          <div class = "col-md-4 offset-md-1 offset-1 col-10 top-margin">
+              <div class = "input-heading">ASSIGN REPORTING MANAGER</div>
+
+              <div class = "box input-shadow dropdown">
+                <!-- <div (click)="toggleList()" class="dropbtn">{{this.saveRm.reportingManager.name}}</div>
+                <div id="myDropdown" class="dropdown-content">
+                  <input type="text" placeholder="Search.." class = "input listField" id="myInput" (keyup)="filterFunction()">
+                  <a *ngFor="let fo of filterOptions" (click) = "changeRM(fo.EmployeeName)">{{fo.EmployeeName}}</a>
+                </div> -->
+                <ngx-select-dropdown
+                  (change)="changeRM(($event).value)"
+                  [multiple]="false"
+                  [(ngModel)]="saveRm.reportingManager.name"
+                  [config]="config"
+                  [options]="filterOptions"
+                >
+                </ngx-select-dropdown>
+              </div> 
+          </div>
+      </div>
+      <div class = "text-center button cursor-pointer button-margin-bottom" (click) = "submit()">SUBMIT</div>
+  </div>
+
+</mat-card>

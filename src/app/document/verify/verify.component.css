@@ -1,0 +1,62 @@
+
+    .verify-container{
+        background-color: #EAF0F1;
+        height: 100%;
+     }
+    
+    
+    .table-container-div{
+      margin-top: 30px;
+      margin-bottom: 40px;
+      text-align: -webkit-center;
+    }
+    .my-table{
+      width: 80%;
+    }
+    
+    .button-col{
+      text-align: center;
+    }
+    
+ 
+    
+  
+    
+     .image-container-2{
+        background: #fff url('http://onboarding.geminisolutions.com.s3-website.ap-south-1.amazonaws.com/Group.png') no-repeat center;
+     }
+    
+   
+    
+      .management-text-2{
+        position: absolute;
+        top: 35%;
+        left: 2%;
+        color: #828282;
+        font-weight: 200;
+        font-size: 18px;
+        font-family: "Open Sans", sans-serif;
+    
+      }
+
+      .reason-input-box{
+        border-radius: 5px;
+        border: 2px solid blueviolet;
+        height: 30px;
+        width: 220px;
+      }
+
+
+    .radioStyling{
+      display: flex; 
+      align-items: center
+    }
+  .ml{
+    margin-left: 11%;
+  }
+
+
+  .table-styling{
+    margin-left:10%;
+    width: 90% !important;
+  }

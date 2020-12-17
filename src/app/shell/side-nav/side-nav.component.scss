@@ -1,0 +1,137 @@
+.sidenav-container {
+  height: 30px;
+}
+.sidenav {
+  width: 20%;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: -100p;
+  z-index: 1;
+}
+
+.navbar {
+  // margin-bottom: $spacer;
+  height: 15px;
+  background-image: linear-gradient(to right, #A26ECA , #5C45A0);
+}
+
+.logged-in-as{
+  color: white;
+}
+
+.nav-link.dropdown-toggle {
+  cursor: pointer;
+}
+.expand{
+  display: flex!important;
+  flex-basis: auto;
+  margin-top: -30px;
+}
+.expand-r{
+  display: flex!important;
+  flex-basis: auto;
+  margin-top: -50px;
+}
+
+
+.mat-drawer-content {
+  overflow: hidden;
+}
+
+.mat-icon {
+  vertical-align: middle;
+  // margin-left: -140%;
+  // text-align: center;
+  // float: left;
+  // margin-left: -123%;
+}
+.mat-nav{
+  // width: 60%;
+  // margin: auto;
+  // text-align: left;
+  // padding-left: 20px;
+}
+
+
+.img-style{
+  width: 120px; 
+  height: 120px; 
+  border-radius: 50%; 
+  margin: auto; 
+  display: block;
+  margin-top: 10px;
+}
+
+.nav-emp-name{
+  margin-top: 10%;
+  margin-bottom: 5%;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: Montserrat;
+}
+
+.nav-emp-designation{
+  // color: #9B2F9B;
+  color: #df8ddf;
+  text-align: center;
+  font-weight: bold;
+  font-family: Montserrat;
+  font-size: 12px;
+}
+
+.add-new-button{
+  text-align: center;  
+  padding-top: 10%;
+}
+
+.add-btn{
+  background-color: #5D38DB;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-family: Montserrat;
+  font-size: 12px
+}
+
+.list-item{
+  // margin-top: 10%;
+  color: white;
+  // text-align: left;
+  margin-left: auto;
+  margin-right:auto;
+  font-weight: bold!important;
+  font-size: 12px!important;
+  font-family: Montserrat!important;
+}
+
+.mat-list-item.active{
+  background-color: #1F2536;
+}
+
+.component-link{
+  text-align: center;
+  font-weight: bolder;
+  font-family: Montserrat!important;
+  font-size: 12px;
+  color: white;
+}
+
+button:focus {
+  outline: none !important;
+}
+
+.complete-container{
+  background-color: #edf1f7;
+}
+
+.pl-7 {
+  padding-left: 22% !important;
+}

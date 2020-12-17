@@ -1,0 +1,26 @@
+.textarea-styling{
+border-radius: 7px;
+padding: 10px;
+}
+textarea ::placeholder{
+    color: blueviolet;
+}
+.input-field{
+    margin-left: 31px;
+    margin-top: inherit;
+}
+
+.email-field{
+    width: 60%;
+    border-color: darkred;
+}
+
+.font-size{
+    font-size: large;
+}
+textarea::placeholder{
+text-align: center;
+}
+.not-allowed{
+    cursor: not-allowed;
+}

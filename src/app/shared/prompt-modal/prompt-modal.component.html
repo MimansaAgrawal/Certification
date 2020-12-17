@@ -1,0 +1,44 @@
+
+<ng-template #template>
+<div class="modal-header mt-1">
+
+  <div class="ml-auto">
+    <h4 class="font-weight-bold"> {{modalTitleText}} </h4>
+  </div>
+
+  <button (click)="hideModal()" aria-label="Close" class="close pull-right" type="button"
+>
+    <i class="fas fa-times icon"></i>
+  </button>
+</div>
+<div class=" modal-body mt-4 text-center">
+  <h4>
+    {{modalBodyText}}
+  </h4>
+</div>
+<div *ngIf="rejectFlag" class="input-field">
+  <textarea class="input-shadow border-0 textarea-styling" cols="50" rows="7" [(ngModel)]="fieldValue" placeholder="please provide reason"></textarea>
+</div>
+
+<div *ngIf="gecFlag" class="input-field">
+  <label for="" class="font-size">Email</label> &nbsp;
+  <input type="text"  class="input input-shadow email-field" [(ngModel)]="fieldValue">
+</div>
+<!-- <div class=" text-center">
+  <button (click)="hideModal(); acceptEvent.emit(fieldValue) " class="button text-white" type="button"  >{{acceptText}}</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button (click)="hideModal(); rejectEvent.emit()" class="button2" type="button">{{rejectText}}</button>
+</div> -->
+<div *ngIf="dateFlag" style="margin-left: 61px; margin-top: inherit;">
+  <label for="" class="font-size">Start Date </label> &nbsp;
+  <input  [(ngModel)]="fieldValue" type="date" class="input input-shadow email-field"
+    min="{{ today }}" />
+</div>
+<div class=" text-center">
+  <button *ngIf="!warningFlag && (gecFlag || rejectFlag || dateFlag)" (click)="hideModal(); acceptEvent.emit(fieldValue) " class="button text-white" type="button" [disabled]="!fieldValue" [ngClass]="{'not-allowed' : !fieldValue}" >{{acceptText}}</button>
+  <button *ngIf="!warningFlag  && !(gecFlag || rejectFlag || dateFlag)" (click)="hideModal(); acceptEvent.emit(fieldValue) " class="button text-white" type="button" >{{acceptText}}</button>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button (click)="hideModal(); rejectEvent.emit()" class="button2" type="button">{{rejectText}}</button>
+</div>
+</ng-template>

@@ -1,0 +1,21 @@
+<div class="login-container">
+  <div class="login-box">
+    <div class="container text-center">
+      <div class="card col-md-6 mt-3 mx-auto">
+        <div class="card-body">
+          <h4 class="card-title text-center">
+            <img src="../../../assets/gemini-solutions-logo.png" alt="gemini logo!">
+          </h4>
+          
+          <button class="btn gemini-login-btn" [disabled]="isButtonDisabled" (click)="login()">Continue with Gemini Mail</button>
+          <alert *ngIf="isLoginSuccessful" type="success">
+            <strong>Success! </strong> You successfully logged in.
+          </alert>
+          <alert *ngIf="isLoginFailed" type="danger">
+            <strong>Failed! </strong>You are not authorised
+          </alert>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

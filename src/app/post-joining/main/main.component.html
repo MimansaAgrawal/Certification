@@ -1,0 +1,72 @@
+
+<!-- new code -->
+
+<div class="container-fluid content">
+
+    <div class = "header-margin-bottom">
+      <common-header [heading]="'ADD EMPLOYEE DETAILS'"
+      [screenId] = "screenId"
+      [candidateId] = "candidateId"></common-header>
+    </div>
+
+    <div>
+  
+    </div>
+  <mat-horizontal-stepper #stepper linear class="stepper-style">
+  <mat-step>
+      <app-emp-details [fullData]="fullData"></app-emp-details>
+      <div class="button-holder">
+        <button mat-button matStepperNext class="button ml-3" >NEXT</button>
+      </div>
+  </mat-step>
+  <mat-step>
+    <app-bank-details  [bankDetailsForm]="bankDetailsForm"></app-bank-details>
+    <div class="button-holder">
+      <button mat-button matStepperPrevious class="button2">PREVIOUS</button>
+      <button *ngIf= "bankDetailsValidation()" mat-button matStepperNext class="button ml-3 text-light">NEXT</button>
+      <button *ngIf= "!bankDetailsValidation()" class="button ml-3 text-light" (click) = "touchAllBankDetails()">NEXT</button>
+    </div>
+  </mat-step>
+  <mat-step>
+    <app-insurance-details [bankDetailsForm]="bankDetailsForm"
+    [fullData]="fullData"></app-insurance-details>
+    <div class="button-holder">
+      <button mat-button matStepperPrevious class="button2">PREVIOUS</button>
+      <button [disabled] = "!insuranceDetailsValidation()"mat-button matStepperNext class="ml-3 button text-light">NEXT</button>
+    </div>
+  
+  </mat-step>
+  <mat-step>
+    <app-visa-details  [bankDetailsForm]="bankDetailsForm">
+    </app-visa-details>
+    <div class="button-holder">
+      <button mat-button matStepperPrevious class="button2">PREVIOUS</button>
+      <button mat-button  class="ml-3 button" (click)="submit()">SUBMIT</button>
+      <!-- <button class="ml-3 button" type="button"
+    (click)="submit()">SUBMIT</button> -->
+    </div>
+  
+  </mat-step>
+  <!-- <mat-step>
+    <span class="input-heading">Proceed to submit?</span>
+
+    <div class="button-holder">
+
+    <button mat-button matStepperPrevious class="btn btn-secondary btn-lg  ml-3 prev-button">PREVIOUS</button>
+  
+    <button class="btn btn-success btn-lg submit-button ml-3" type="submit"
+    (click)="submit()">SUBMIT</button>
+  </div>
+  </mat-step> -->
+  <ng-template matStepperIcon="edit" >
+    <mat-icon>done</mat-icon>
+
+  </ng-template>
+  
+  </mat-horizontal-stepper>
+  <!-- <ng-template matStepperIcon="number" >
+    <mat-icon>done</mat-icon>
+
+  </ng-template> -->
+  
+  </div>

@@ -1,0 +1,598 @@
+<div class="myRow header-margin-bottom">
+  <div class="col-md-9 offset-md-1 offset-1 col-9 top-margin">
+    <div class="heading ml-10" >
+      <a *ngIf="!external" class="cursor-pointer text-dark" (click)="onGrid()">
+        <i class="left-arrow fas fa-arrow-left"></i>
+      </a>
+     GIVE FEEDBACK
+    </div>
+  </div>
+</div>
+
+
+<mat-card class="white-card1" style="max-width: 115rem;">
+  <div class="wrapper top-padding bg-color" class="fit-content">
+  <form [formGroup]="feedbackForm" id="feedbackForm">
+    <div class="myRow">
+      <!-- Input field for Name -->
+
+      <div class="col-md-2 offset-md-1 offset-2 col-10 top-margin">
+        <div class="input-heading">Name<span class="text-danger">*</span></div>
+
+        <input formControlName="name" id="name" type="text" class="input input-shadow" placeholder="Name" disabled/>
+        <div *ngIf="f.name.touched && f.name.invalid" class="alertmsg">
+
+          <div *ngIf="f.name.errors.required" class="text-danger req">
+            Name is required.
+          </div>
+
+          <div *ngIf="f.name.errors.pattern" class="text-danger req">
+            Please, Enter Valid Name.
+          </div>
+        </div>
+      </div>
+
+
+      <!-- input field for purpose -->
+
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Purpose<span class="text-danger">*</span></div>
+
+        <div>
+          <input type="text" value={{selectedPurpose}} class="input input-shadow" disabled>
+          <!-- <div (click)="toggleList('purposeDropdown')" class="dropbtn">
+            {{ selectedPurpose }}
+          </div>
+          <div id="purposeDropdown" class="dropdown-content">
+            <input type="text" formControlName="purposeSpoc" placeholder="Search.." id="purposeInput"
+              class="input listField "
+              (keyup)="purposeFilter = filterFunction(purposeFilter, Purpose, 'purposeInput')" disabled/>
+            <a *ngFor="let fo of purposeFilter" (click)="changePurpose(fo, 'purposeDropdown')">{{ fo }}</a>
+          </div> -->
+          <!-- <ngx-select-dropdown formControlName="purposeSpoc"
+          [multiple]="false"
+           [config]="config"
+          [options]="Purpose">
+        </ngx-select-dropdown> -->
+                </div>
+        <div *ngIf="f.purposeSpoc.touched">
+          <ng-container [ngSwitch]="selectedPurpose">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+
+
+      <!-- input field for Work Planning and Execution -->
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Work Planning And Execution<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf0Dropdown')" class="dropbtn">
+            {{ selectedPerf0 }}
+          </div>
+          <div id="perf0Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc0" placeholder="Search.." id="perf0Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf0Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf0Dropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="perfSpoc0" [disabled]='!isEditable'
+          [multiple]="false"
+           [config]="config"
+           (change)="changePerf($event,'perf0Dropdown')"
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.perfSpoc0.touched">
+          <ng-container [ngSwitch]="selectedPerf0">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- input field for Managerial Proficiency -->
+      <div class="col-md-2 offset-md-1 offset-2 col-10 top-margin">
+        <div class="input-heading">Managerial Proficiency<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf1Dropdown')" class="dropbtn">
+            {{ selectedPerf1 }}
+          </div>
+          <div id="perf1Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc1" placeholder="Search.." id="perf1Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf1Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf1Dropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="perfSpoc1" [disabled]='!isEditable'
+          [multiple]="false"
+           [config]="config"
+           (change)="changePerf($event,'perf1Dropdown')"
+
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div>
+          <div *ngIf="f.perfSpoc1.touched">
+            <ng-container [ngSwitch]="selectedPerf1">
+
+              <ng-container *ngSwitchCase="'Select'">
+                <ng-container><label class="text-danger">This is required.</label><br>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+
+      </div>
+      <!-- input field for Job Knowledge/Technical Skills -->
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Job Knowledge/Technical Skills<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf2Dropdown')" class="dropbtn">
+            {{ selectedPerf2 }}
+          </div>
+          <div id="perf2Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc2" placeholder="Search.." id="perf2Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf2Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf2Dropdown')">{{ fo }}</a>
+          </div> -->
+
+          <ngx-select-dropdown formControlName="perfSpoc2" [disabled]='!isEditable'
+          [multiple]="false"
+           [config]="config"
+           (change)="changePerf($event,'perf2Dropdown')"
+
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.perfSpoc2.touched">
+          <ng-container [ngSwitch]="selectedPerf2">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- input field for Dependability -->
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Dependability<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf3Dropdown')" class="dropbtn">
+            {{ selectedPerf3 }}
+          </div>
+          <div id="perf3Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc3" placeholder="Search.." id="perf3Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf3Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf3Dropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="perfSpoc3" [disabled]='!isEditable'
+          [multiple]="false"
+          (change)="changePerf($event,'perf3Dropdown')"
+
+           [config]="config"
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.perfSpoc3.touched">
+          <ng-container [ngSwitch]="selectedPerf3">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- input field for Productivity -->
+      <div class="col-md-2 offset-md-1 offset-2 col-10 top-margin">
+        <div class="input-heading">Productivity<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf4Dropdown')" class="dropbtn">
+            {{ selectedPerf4 }}
+          </div>
+          <div id="perf4Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc4" placeholder="Search.." id="perf4Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf4Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf4Dropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="perfSpoc4" [disabled]='!isEditable'
+          [multiple]="false"
+          (change)="changePerf($event,'perf4Dropdown')"
+
+           [config]="config"
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.perfSpoc4.touched">
+          <ng-container [ngSwitch]="selectedPerf4">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- input field for Problem Solving -->
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Problem Solving<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf5Dropdown')" class="dropbtn">
+            {{ selectedPerf5 }}
+          </div>
+          <div id="perf5Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc5" placeholder="Search.." id="perf5Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf5Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf5Dropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="perfSpoc5" [disabled]='!isEditable'
+          [multiple]="false"
+          (change)="changePerf($event,'perf5Dropdown')"
+
+           [config]="config"
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.perfSpoc5.touched">
+          <ng-container [ngSwitch]="selectedPerf5">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- input field for Initiative -->
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Initiative<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf6Dropdown')" class="dropbtn">
+            {{ selectedPerf6 }}
+          </div>
+          <div id="perf6Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc6" placeholder="Search.." id="perf6Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf6Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf6Dropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="perfSpoc6" [disabled]='!isEditable'
+          [multiple]="false"
+          (change)="changePerf($event,'perf6Dropdown')"
+
+           [config]="config"
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.perfSpoc6.touched">
+          <ng-container [ngSwitch]="selectedPerf6">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- input field for Learnability -->
+      <div class="col-md-2 offset-md-1 offset-2 col-10 top-margin">
+        <div class="input-heading">Learnability<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf7Dropdown')" class="dropbtn">
+            {{ selectedPerf7 }}
+          </div>
+          <div id="perf7Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc7" placeholder="Search.." id="perf7Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf7Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf7Dropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="perfSpoc7" [disabled]='!isEditable'
+          [multiple]="false"
+          (change)="changePerf($event,'perf7Dropdown')"
+
+           [config]="config"
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.perfSpoc7.touched">
+          <ng-container [ngSwitch]="selectedPerf7">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- input field for Adaptability -->
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Adaptability<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf8Dropdown')" class="dropbtn">
+            {{ selectedPerf8 }}
+          </div>
+          <div id="perf8Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc8" placeholder="Search.." id="perf8Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf8Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf8Dropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="perfSpoc8" [disabled]='!isEditable'
+          [multiple]="false"
+          (change)="changePerf($event,'perf8Dropdown')"
+
+           [config]="config"
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.perfSpoc8.touched">
+          <ng-container [ngSwitch]="selectedPerf8">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- input field for Adaptability -->
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Team Work and Coordination<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('perf9Dropdown')" class="dropbtn">
+            {{ selectedPerf9 }}
+          </div>
+          <div id="perf9Dropdown" class="dropdown-content">
+            <input type="text" formControlName="perfSpoc9" placeholder="Search.." id="perf9Input"
+              class="input listField" (keyup)="perfFilter = filterFunction(perfFilter, Perf, 'perf9Input')" />
+            <a *ngFor="let fo of perfFilter" (click)="changePerf(fo, 'perf9Dropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="perfSpoc9" [disabled]='!isEditable'
+          [multiple]="false"
+          (change)="changePerf($event,'perf9Dropdown')"
+
+           [config]="config"
+          [options]="Perf">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.perfSpoc9.touched">
+          <ng-container [ngSwitch]="selectedPerf9">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- Input field for Areas where employee is doing well -->
+      <br><br>
+      <div class="col-md-2 offset-md-1 offset-2 col-10 top-margin">
+        <div class="input-heading">Areas where employee is doing well<span class="text-danger">*</span></div>
+        <textarea *ngIf='!isEditable' disabled formControlName="feedback1" id="feedback1" rows="1" class="form-control" [disabled]='!isEditable'></textarea>
+        <textarea *ngIf='isEditable' formControlName="feedback1" id="feedback1" rows="1" class="form-control" [disabled]='!isEditable'></textarea>
+
+        <div *ngIf="f.feedback1.touched && f.feedback1.invalid" class="alertmsg">
+          <div *ngIf="f.feedback1.errors.required" class="req">
+            <label class="text-danger">This is required.</label>
+          </div>
+
+          <div *ngIf="f.feedback1.errors.pattern" class="req">
+            Please, Enter Valid info.
+          </div>
+        </div>
+      </div>
+      <!-- Input field for Areas of improvement for this employee -->
+
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Areas of improvement<span class="text-danger">*</span></div>
+        <textarea *ngIf='!isEditable' disabled formControlName="feedback2" formcontrid="feedback2" rows="1" class="form-control" [disabled]='!isEditable'></textarea>
+        <textarea *ngIf='isEditable' formControlName="feedback2" formcontrid="feedback2" rows="1" class="form-control" [disabled]='!isEditable'></textarea>
+        <div *ngIf="f.feedback2.touched && f.feedback2.invalid" class="alertmsg">
+          <div *ngIf="f.feedback2.errors.required" class="req">
+            <label class="text-danger">This is required.</label>
+          </div>
+
+          <div *ngIf="f.feedback2.errors.pattern" class="req">
+            Please, Enter Valid Info.
+          </div>
+        </div>
+      </div>
+      <!-- input field for Satisfied and proceed as full-time employee -->
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Satisfied and proceed as full-time<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('fulltimeDropdown')" class="dropbtn">
+            {{ selectedFullTime }}
+          </div>
+          <div id="fulltimeDropdown" class="dropdown-content">
+            <input type="text" formControlName="isFullTime" placeholder="Search.." id="fullTimeInput"
+              class="input listField"
+              (keyup)="fullTimeFilter = filterFunction(fullTimeFilter, FullTime, 'fullTimeInput')" />
+            <a *ngFor="let fo of fullTimeFilter" (click)="changeIsFullTime(fo, 'fulltimeDropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="isFullTime" [disabled]='!isEditable'
+          [multiple]="false"
+           [config]="config"
+           (change)="changeIsFullTime($event)"
+          [options]="FullTime">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.isFullTime.touched">
+          <ng-container [ngSwitch]="selectedFullTime">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+      <!-- input field for rating on scale 1 to 5 -->
+      <div class="col-md-2 offset-md-1 offset-2 col-10 top-margin">
+        <div class="input-heading">Overall rating 1 to 5<span class="text-danger">*</span></div>
+
+        <!-- <div class="box input-shadow dropdown">
+          <div (click)="toggleList('ratingDropdown')" class="dropbtn">
+            {{ selectedRating }}
+          </div>
+          <div id="ratingDropdown" class="dropdown-content">
+            <input type="text" formControlName="rating" placeholder="Search.." id="ratingInput" class="input listField"
+              (keyup)="ratingFilter = filterFunction(ratingFilter, Rating, 'ratingInput')" />
+            <a *ngFor="let fo of ratingFilter" (click)="changeRating(fo, 'ratingDropdown')">{{ fo }}</a>
+          </div>
+          <i class="fas fa-caret-down arrow-pos2"></i>
+        </div> -->
+        <!-- <div *ngIf="f.rating.touched">
+          <ng-container [ngSwitch]="selectedRating">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+
+        </div> -->
+
+
+
+        <star-rating value={{selectedRating}} totalstars="5" checkedcolor="rebeccapurple" uncheckedcolor="black" size="30px" readonly={{!isEditable}} (rate)="onRate($event)" ></star-rating>
+
+        <!-- since star-rating does not support "formControlName" so keeping a hidden form field for it-->
+        <input type="text" formControlName="rating" value="3" style="visibility: hidden;" [disabled]='!isEditable'/>
+        <!-- <div *ngIf="f.rating.touched">
+          <ng-container [ngSwitch]="selectedRating">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div> -->
+      </div>
+
+
+
+      <!-- Input field for Overall Remarks/Feedback (100 words minimum) -->
+
+      <div class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Overall Remarks/Feedback (100 words minimum)<span class="text-danger">*</span></div>
+        <textarea *ngIf='!isEditable' formControlName="finalFeedback" id="finalFeedback" rows="1" class="form-control" disabled></textarea>
+        <textarea *ngIf='isEditable' formControlName="finalFeedback" id="finalFeedback" rows="1" class="form-control"></textarea>
+
+        <!-- <div
+          *ngIf="f.finalFeedback.touched && f.finalFeedback.errors && f.finalFeedback.errors.required || falseClicked"
+          class="required">Final feedback is required.</div>
+
+          <div
+          *ngIf="f.finalFeedback.touched && f.finalFeedback.invalid && f.finalFeedback.errors.minLength || falseClicked"
+          class="required">Please Enter minimum 100 words.</div> -->
+          <div *ngIf="f.finalFeedback.touched && f.finalFeedback.invalid" class="alertmsg">
+
+            <div *ngIf="f.finalFeedback.errors.required" class="text-danger req">
+              This is required.
+            </div>
+
+            <!-- <div *ngIf="f.finalFeedback.errors.pattern" class="text-danger req">
+              Please, Enter Valid Feedback.
+            </div> -->
+            <div *ngIf="!f.finalFeedback.errors.required && !f.finalFeedback.errors.minLength" class="text-danger req">
+              Please, Enter minimum 100 words.
+            </div>
+          </div>
+
+      </div>
+
+
+      <!-- Input field for rating of fresher -->
+
+
+      <div *ngIf="professionalExp=='f'" class="col-md-2 offset-md-2 offset-2 col-10 top-margin">
+        <div class="input-heading">Rating based on performances<span class="text-danger">*</span></div>
+
+        <div class="box input-shadow dropdown">
+          <!-- <div (click)="toggleList('ratingFresherDropdown')" class="dropbtn">
+            {{ selectedFresherRating }}
+          </div>
+          <div id="ratingFresherDropdown" class="dropdown-content">
+            <input type="text" formControlName="ratingFresher" placeholder="Search.." id="ratingInput"
+              class="input listField"
+              (keyup)="ratingFresherFilter = filterFunction(ratingFresherFilter, RatingFresher, 'ratingInput')" />
+            <a *ngFor="let fo of ratingFresherFilter"
+              (click)="changeFresherRating(fo, 'ratingFresherDropdown')">{{ fo }}</a>
+          </div> -->
+          <ngx-select-dropdown formControlName="ratingFresher" [disabled]='!isEditable'
+          [multiple]="false"
+           [config]="config"
+           (change)="changeFresherRating($event)"
+          [options]="RatingFresher">
+        </ngx-select-dropdown>
+                </div>
+        <div *ngIf="f.ratingFresher.touched">
+          <ng-container [ngSwitch]="selectedFresherRating">
+
+            <ng-container *ngSwitchCase="'Select'">
+              <ng-container><label class="text-danger">This is required.</label><br>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+    <!--button class="text-center button" type="submit" (click) = "submit()">DUMMY</button-->
+    <div class="text-center" *ngIf='isEditable'>
+      <button class="text-center button" type="submit" (click)="submit()" >
+        SUBMIT
+      </button>
+    </div>
+    <div class="text-center" *ngIf='!isEditable'>
+        <button class="text-center button" type="submit" (click)="viewAndApprove()" >
+          Proceed to approve
+        </button>
+      </div>
+  </form>
+</div>
+</mat-card>
+
+<prompt-modal
+*ngIf="toggleModalWarning"
+[warningFlag]="'false'"
+[modalTitleText]="'Warning'"
+[modalBodyText]="message"
+[rejectText]="'Cancel'"
+(hideModalEvent)="toggleModalWarning=!toggleModalWarning"
+
+> </prompt-modal>
+
+
+
+
+<prompt-modal
+*ngIf="feedbackSubmitted"
+[warningFlag]="'false'"
+[modalTitleText]="'Feedback submitted.'"
+[modalBodyText]="'Your feedback has been submitted successfully'"
+[rejectText]="'Close and Redirect'"
+(hideModalEvent)="feedbackSubmittedModalClosed()"
+> </prompt-modal>

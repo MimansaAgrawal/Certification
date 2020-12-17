@@ -1,0 +1,98 @@
+
+input[type="file"] {
+  /* display: none; */
+  border: 1px solid white;
+  background-color: white;
+  padding: 6px 12px;
+  font-size: larger;
+  border-radius: 4px;
+
+}
+
+.field-height{
+  height: 80px;
+}
+.refernceClass{
+  margin: 10px 0px 0px 0px;
+    padding: 10px;
+    /* border: 1px solid #8a2be23d; */
+    border: 3px solid #eee;
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 10px;
+/* border-radius: 5px; */
+}
+.f{
+  float: right;
+}
+.iconContainer{
+  position: relative;
+}
+.crossIcon{
+  position: absolute;
+  right: 7px;
+  top: -3px;
+  color: red;
+  font-size: 20px;
+  margin-top: -6px;
+  margin-right: -15px;
+  cursor: pointer;
+  z-index: 20;
+}
+.form-control{
+  border-radius: 7px;
+  padding-top: 1.4em;
+  padding-bottom: 1.7em;
+  /* border: 1px solid #A26ECA !important;
+  box-shadow: 1px 1px #5C45A0 !important; */
+}
+.image-container-2{
+  background: #fff url('http://onboarding.geminisolutions.com.s3-website.ap-south-1.amazonaws.com/Group.png') no-repeat center;
+  margin-top: 2%;
+  height: 147px;
+  border-radius: 6px;
+  position: relative;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: -65px;
+  }
+  .text{
+    position: absolute;
+    padding-top: 5%;
+    padding-left: 2%;
+  }
+
+
+td, th {
+
+text-align:center;
+}
+
+
+
+  .dot1 {
+    height: 15px;
+    width: 15px;
+    background-color:yellow;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot2 {
+    height: 15px;
+    width: 15px;
+    background-color:green;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot3 {
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+  }
+.green-circle{
+  font-size: 20px;
+  cursor: pointer;
+  color: green;
+}

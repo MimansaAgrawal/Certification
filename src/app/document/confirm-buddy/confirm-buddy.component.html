@@ -1,0 +1,30 @@
+<div class = "header-margin-bottom">
+    <common-header [heading] = "'CONFIRM AS BUDDY'"
+    [screenId] = "screenId"
+    [candidateId] = "candidateId"></common-header>
+</div>
+<mat-card class = "white-card">
+
+  <show-candidate-details
+  [fullData] = "fullData"
+  [inputfilename] = "inputfilename"
+  [myObj] = "myObj"
+  [inputDoc]="inputDoc"
+  (submitEvent) = "submit()"
+  >
+  </show-candidate-details>
+
+  <div class="wrapper">
+      <div class = "myRow">
+          <div class = "col-md-4 offset-md-1 offset-1 col-10 top-margin">
+              <div class = "input-heading">CONFIRM AS BUDDY</div>
+              <select class = "input-shadow" (change)="changeBuddy($event)">
+                  <option *ngFor="let budy of Buddy">{{budy}}</option>
+              </select>
+              <i class="fas fa-caret-down arrow-pos"></i>
+          </div>
+      </div>
+      <div class = "text-center button cursor-pointer" (click) = "submit()">SUBMIT</div>
+  </div>
+
+</mat-card>

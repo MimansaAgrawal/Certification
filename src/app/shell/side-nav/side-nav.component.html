@@ -1,0 +1,94 @@
+<mat-sidenav-container autosize>
+  <mat-sidenav
+    class="sidenav"
+    mode="side"
+    #sidenav
+    opened
+    position="start"
+    [fixedInViewport]="true"
+    [fixedTopGap]="'0'"
+    [fixedBottomGap]="'0'"
+  >
+    <!-- <img src="assets/Gemini-Logo.svg" alt="Profile Photo" > -->
+    <img class="img-style" src="{{ user.ImagePath }}" alt="Profile Photo" />
+
+    <div>
+      <p class="nav-emp-name">{{ user.EmployeeName | uppercase }}</p>
+      <p class="nav-emp-designation">{{ user.Designation }}</p>
+      <!-- <p class="nav-emp-designation">{{username}}</p> -->
+    </div>
+    <!--
+  <div class="add-new-button">
+    <button class="btn add-btn" mat-raised-button >+ADD NEW CANDIDATE</button>
+  </div> -->
+    <!-- <mat-list-item class="list-item" [routerLink]="['/dashboard/grid']" [routerLinkActive]="['active']">
+     <mat-icon [class.active]="'selected'" mat-icon-button>home</mat-icon> -->
+    <!-- <a matLine class="pl-7"> <mat-icon [class.active]="'selected'" mat-icon-button >home</mat-icon>
+      &nbsp;
+      Employee Onboard</a>
+  </mat-list-item>
+  <mat-list-item class="list-item" [routerLink]="['/training/feedbackgrid']" [routerLinkActive]="['active']">
+    <a matLine style="padding-left: 22%;">
+      <img src="../../../assets/teacher.svg" alt="" [class.active]="'selected'" height="23" width="23">
+
+      &nbsp;
+      Training</a>
+  </mat-list-item>
+
+  <mat-nav-list>
+  <mat-list-item class="list-item" [routerLink]="['/skill/fillskills']" [routerLinkActive]="['active']">
+    <a matLine class="pl-7">
+      <img src="../../../assets/pencil.svg" alt="" [class.active]="'selected'" height="20" width="20">
+
+      &nbsp;
+      Employee Skills</a>
+  </mat-list-item>
+</mat-nav-list> -->
+    <mat-nav-list class="mat-nav">
+      <mat-list-item
+        class="list-item"
+        [routerLink]="['/certification/grid']"
+        [routerLinkActive]="['active']"
+      >
+        <a matLine style="padding-left: 22%;">
+          <img
+            src="../../../assets/certificate.svg"
+            alt=""
+            [class.active]="'selected'"
+            height="23"
+            width="23"
+          />
+
+          &nbsp; Certifications</a
+        >
+      </mat-list-item>
+      <mat-list-item class="list-item">
+        <a matLine (click)="logout()" class="pl-7">
+          <!-- <mat-icon [class.active]="'selected'" mat-icon-button>home</mat-icon> -->
+          <img
+            src="../../../assets/logout.svg"
+            alt=""
+            [class.active]="'selected'"
+            height="20"
+            width="20"
+          />
+          &nbsp; Logout</a
+        >
+      </mat-list-item>
+    </mat-nav-list>
+    <!-- <mat-nav-list>
+
+    </mat-nav-list> -->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="navbar" color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon class="mt-4">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <app-header></app-header>
+    <div class="complete-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

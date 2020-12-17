@@ -1,0 +1,51 @@
+.form-control{
+  border-radius: 7px;
+  padding-top: 1.4em;
+  padding-bottom: 1.7em;
+  /* border: 1px solid #A26ECA !important;
+  box-shadow: 1px 1px #5C45A0 !important; */
+}
+
+/* .multiselect-dropdown{
+  border: 1px solid #A26ECA !important;
+  box-shadow: 1px 1px #5C45A0 !important;
+} */
+
+/* .form-group{
+  min-height: 75px;
+} */
+::ng-deep .multiselect-dropdown .dropdown-btn{
+  display: inline-block;
+  border: 1px solid #adadad;
+  width: 100%;
+  padding: 10px 12px !important;
+}
+/* ::ng-deep .multiselect-dropdown .dropdown-btn.dropdown-down {
+  display: inline-block;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid #adadad !important;
+  border-left: 3px solid transparent !important;
+  border-right: 5px solid transparent !important;
+} */
+::ng-deep .multiselect-item-checkbox input[type=checkbox]+div::before{
+  border: 2px solid blueviolet !important;
+  /* background: blueviolet !important; */
+
+}
+::ng-deep .multiselect-dropdown .dropdown-btn .selected-item {
+  border: 1px solid blueviolet !important;
+  background: blueviolet !important;
+}
+
+
+::ng-deep .multiselect-dropdown .dropdown-btn.dropdown-down {
+  display: inline-block;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid #adadad !important;
+  border-left: 3px solid transparent !important;
+  border-right: 5px solid transparent !important;
+}

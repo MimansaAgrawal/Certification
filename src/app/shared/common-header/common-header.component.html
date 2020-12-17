@@ -1,0 +1,39 @@
+<div class = "myRow">
+	<div class = "col-md-9 offset-md-1 offset-1 col-9 top-margin">
+		<div class="heading">
+			<a *ngIf = "!isExternalUser" class="cursor-pointer text-secondary" (click)="onGrid()">
+				<i class="left-arrow fas fa-arrow-left"></i>
+			</a>
+			{{heading}}
+		</div>
+	</div>
+	<div *ngIf = "!isExternalUser && screenId" class = "myRow">
+		<div class = "col-md-9 offset-md-1 offset-1 col-9 top-margin">
+			<div  (click) = "openModal(template)" class = "text-center button cursor-pointer mt-auto float-right">Send E-mail</div>
+		</div>
+	</div>
+</div>
+
+
+<ng-template #template>
+	<div class="modal-header mt-1">
+		<h4 class="font-weight-bold ml-auto">Send Email</h4>
+	  <button (click)="modalRef.hide()" aria-label="Close" class="close pull-right" type="button"
+		>
+		<i class="fas fa-times icon"></i>
+	  </button>
+	</div>
+  
+	<div class=" modal-body mt-4 text-center">
+  
+	  <h4>Are you sure?</h4>
+	</div>
+  
+	<div class="text-center">
+	 
+	  <button class="button" (click)="manuallyTriggerEmail()"  type="submit"  >YES</button>
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	  <button (click)="modalRef.hide()" class="button2">NO</button>
+	</div>
+  </ng-template>
+  

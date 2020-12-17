@@ -1,0 +1,101 @@
+<div class="header-margin-bottom">
+  <common-header [heading]="'ASSET CONFIGURATION'"
+  [screenId] = "screenId"
+  [candidateId] = "candidateId"></common-header>
+</div>
+
+<mat-card class="white-card">
+
+  <show-candidate-details [fullData]="fullData" [inputfilename]="inputfilename" [myObj]="myObj" [inputDoc]="inputDoc">
+  </show-candidate-details>
+
+  <div class="wrapper height-styling">
+    <div class="myRow">
+
+      <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+        <div class="input-heading">SYSTEM TYPE</div>
+        <input type="text" class="input input-shadow disabled" readonly="readonly" [value]="systemType" disabled />
+      </div>
+
+      <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+        <div class="input-heading">SOFTWARE INSTALLED</div>
+        <tag-input id="software" [ngModel]="softwareInstalled" [modelAsStrings]="true" [disable]="true">
+        </tag-input>
+      </div>
+
+      <div class="w-100" *ngIf = "assetData">
+        <div *ngFor="let asset of assetData.assetInfo;">
+
+          <div class="myRow array-border w-100">
+            <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+              <div class="input-heading">ASSET</div>
+              <input [value]="asset.asset" type="text" class="input input-shadow disabled" disabled />
+
+            </div>
+
+            <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+              <div class="input-heading">MAKE</div>
+              <input [value]="asset.make" type="text" class="input input-shadow disabled" disabled />
+            </div>
+
+            <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+              <div class="input-heading">MODEL</div>
+              <input [value]="asset.model" type="text" class="input input-shadow disabled" disabled />
+            </div>
+
+            <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+              <div class="input-heading">SERIAL NO</div>
+              <input [value]="asset.serialNo" type="text" class="input input-shadow disabled" disabled />
+            </div>
+
+            <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+              <div class="input-heading">ALLOCATED FROM</div>
+              <input [value]="asset.allocatedFrom" type="text" class="input input-shadow disabled" disabled />
+            </div>
+
+            <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+              <div class="input-heading">ASSIGNED BY</div>
+              <input [value]="asset.assignedBy.name" type="text" class="input input-shadow disabled" disabled />
+            </div>
+
+          </div>
+
+        </div>
+
+        <div  class="myRow w-100">
+
+          <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+            <div class="input-heading">SEAT NO</div>
+            <input type="text" [value]="assetData.seatNo" class="input input-shadow disabled" disabled />
+          </div>
+
+          <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+            <div class="input-heading">T-SHIRT SIZE</div>
+            <input type="text" [value]="assetData.tShirtSize" class="input input-shadow disabled" disabled />
+          </div>
+
+          <form  class = "myRow w-100" [formGroup]="assetConfigForm">
+            <div class="col-md-4 offset-md-1 offset-1 col-10 top-margin">
+              <div class="input-heading">ADDITIONAL COMMENTS</div>
+              <input formControlName="additionalComments" type="text" class="input input-shadow" />
+            </div>
+
+            <div class="col-md-4 offset-md-2 offset-1 col-10 top-margin">
+              <div class="input-heading">CONFIGURED BY</div>
+              <div class="box input-shadow dropdown">
+                <ngx-select-dropdown formControlName="configuredBy" [multiple]="false" [config]="config"
+                  [options]="itPerson">
+                </ngx-select-dropdown>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <button class="text-center button cursor-pointer button-margin-bottom" (click)="submit()">
+        SUBMIT
+      </button>
+
+    </div>
+  </div>
+</mat-card>

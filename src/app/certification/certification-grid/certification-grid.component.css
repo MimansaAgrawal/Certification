@@ -1,0 +1,332 @@
+table {
+    width: 100%;
+    }
+
+    .table-container{
+    margin: 0 20px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    background-color: white;
+    }
+    .table-responsive{
+      display: inline-table;
+      border-collapse: inherit;
+    }
+    .mat-buttonClass{
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+
+    .mat-header-cell{
+    color: black;
+    font-weight: bold;
+    font-size: medium;
+    font-family: Open Sans, sans-serif;
+
+    }
+    .complete-container{
+    background-color: #EAF0F1;
+    }
+
+    .mat-paginator{
+      width: fit-content;
+    }
+    /* .image-container{
+    background: #fff url('http://onboarding.geminisolutions.com.s3-website.ap-south-1.amazonaws.com/emp.svg') no-repeat center;
+
+    } */
+    .search-and-add{
+    display: flex;
+    justify-content: space-between;
+    }.mat-button-toggle-appearance-standard {
+      background-color: #6B7AF8;
+      color:white;
+      border: 1px solid #D8BCA0;
+      width: 108.37px;
+      border-radius: 5px;
+
+      }
+
+      .mat-span-content{
+      font-size: 15px;
+      font-weight: 700;
+      font-family: Open Sans, sans-serif;
+      }
+
+      .mat-button-group-container{
+      margin-left: 20px;
+      border: none;
+      }
+      .mat-button-toggle-checked {
+      background-color: #AD80F0;
+      color:white;
+      }
+
+
+
+
+    /* .add-button-div{
+    margin-right: 60px;
+    float:right;
+    } */
+
+
+    /* .sendlink-button-div{
+      margin-right: 60px;
+      float:right;
+      } */
+
+
+
+    .br-text{
+    color: #393939;
+    font-weight: bold;
+    font-size: 18px;
+    }
+
+    .management-text{
+    position: absolute;
+    top: 35%;
+    left: 2%;
+    color: #828282;
+    font-weight: 200;
+    font-size: 18px;
+    }
+
+    .search-box{
+    width: 350px;
+    margin-left: 20px;
+    height:28px;
+    padding: 20px 10px;
+    /* display: inline; */
+    }
+    .fa-search{
+      margin-left: -20px;
+    }
+
+    .checkbox-margin{
+    margin-left: 20px;
+    }
+    .label-font-increase{
+
+    color: #192038;
+    font-family: Open Sans, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5rem;
+    }
+    tr.example-detail-row {
+    height: 0;
+    }
+    tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+    }
+    tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+    }
+    .example-element-row td {
+    border-bottom-width: 0;
+    }
+    .example-element-detail {
+    overflow: hidden;
+    }
+    .pop-up-row-div-container{
+    /* display: flex; */
+    justify-content: space-between;
+    }
+
+    .address-div{
+    margin-right: 120px;
+    }
+    .pop-down-row-heading{
+    font-weight: bold;
+    }
+
+    .full-progress-bar-div{
+    margin-bottom: 15px;
+    }
+    .circle-icons{
+    display: flex;
+    justify-content: space-between;
+    }
+  .stepper-line-current{
+    width: 100%;
+    align-items: center;
+    border-top: 11px solid transparent;
+    border-image: url("../../../assets/images/border3(1).png") 40;
+  }
+  .stepper-line-completed{
+    width: 100%;
+    align-items: center;
+    border-top: 4px solid #54ED00;
+  }
+  .stepper-line-normal {
+    width: 100%;
+    align-items: center;
+    border-top: 4px solid #e9e9e9;
+  }
+  .stepper-icon-current{
+    font-size: 28px;
+    padding-left: 1px;
+    padding-right: 1px;
+    color: purple;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .stepper-icon-completed{
+    font-size: 28px;
+    color: #54ED00;
+  }
+  ::ng-deep .mat-step-header .mat-step-icon-state-done {
+    background-color: #54ED00;
+  }
+  ::ng-deep .mat-step-header .mat-step-icon-selected {
+    background-color: purple;
+  }
+  .stepper-icon-normal{
+    font-size: 30px;
+    color: #e9e9e9;
+  }
+
+  ::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+  }
+  @include media (min-width: 992px)
+  .navbar-expand-lg .navbar-collapse {
+      display: flex!important;
+      flex-basis : auto;
+      margin-top: -72px !important;
+  }
+
+
+  .row-class{
+    margin-top: -70px;
+  }
+
+  .row-card{
+    width: 17vw;
+    cursor: pointer;
+    height: 7rem;
+    border-radius: 8px;
+    line-height: 10px;
+  }
+
+  .card-div{
+    margin-left: 2rem;
+    /* margin-top: auto; */
+    margin-top: 25px;
+  }
+
+  .card-img{
+    width:40px;
+    height:40px;
+    margin-right:15px;
+    float: left;
+    background: #EEF4FE;
+    padding: 7px;
+  }
+  .grid-header{
+    /* font-family: Montserrat Regular; */
+    /* font-size: 14px; */
+    display: flex;
+    margin-top: -10px;
+    line-height: normal;
+  }
+  .search-box{
+    display: inline;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .row-class{
+      margin-top: auto;
+      /* display: block; */
+    }
+    .row-card{
+      /* display: contents; */
+      width: 20rem;
+    }
+    .grid-header{
+      /* display: none; */
+
+    }
+    .add-new-btn{
+      margin-right: 20px;
+    }
+
+  }
+  @media only screen and (max-width: 768px) {
+  .add-new-btn{
+    float: left;
+    margin-left: 20px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .row-class{
+    display: inline;
+  }
+}
+
+.active{
+  border: 2px solid #805ab6;
+}
+
+  .current-status{
+    font-family: Montserrat;
+    font-size: 14px;
+    color: #F2923B;
+  }
+
+  .mat-cell, .mat-footer-cell {
+    font-size: 12px;
+}
+
+.link-style{
+  cursor: pointer;
+}
+
+.hand-shake{
+  color:rgb(138, 43, 226,.6);
+  font-size: 26px;
+}
+
+.action-style{
+  cursor: pointer;
+  text-decoration:none;
+  color:#7B63E2;
+  border: none;
+  background-color: transparent;
+}
+.action-style:hover{
+  background-color: #8a2be22e;
+  border-radius: 5px;
+}
+.font-style{
+  font-size:18px;
+}
+
+.edit-color{
+  color:#716565
+}
+.delete-color{
+  color:indianred;
+}
+.reject-color{
+  color:rgb(209, 97, 60);
+}
+
+.monthyeardropdowns select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
+  border: 1px solid #dfdfdf;
+  border-radius: 2px;
+  margin-right: 2rem;
+  padding: 1rem;
+  padding-right: 2rem;
+}

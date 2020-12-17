@@ -1,0 +1,139 @@
+*{
+    /* font-family: Impact, Charcoal, sans-serif; */
+    font-family: 'Montserrat';
+
+    font-size: 14px;
+    /* color: rgba(0, 0, 0, 0.6); */
+    }
+    .mat-select-panel {
+        background-color: red;
+    }
+    .mat-radio-button ~ .mat-radio-button {
+        margin-left: 16px;
+
+      }
+    .editText input{
+        border-radius: 7px;
+        padding-top: 1.4em;
+        padding-bottom: 1.7em;
+    }
+    .req{
+        color: red;
+    }
+    .ng-touched.ng-pristine{
+        border-color: red;
+    }
+
+
+    input:hover {
+
+        border-radius: 5px;
+        border-color: blue;
+    }
+
+    .text-block{
+        text-align: center;
+        position: relative;
+        margin-top: -130px;
+        margin-bottom: 100px;
+        /* margin-left: -20%; */
+    }
+    .image-container-2{
+        background: #fff url('http://onboarding.geminisolutions.com.s3-website.ap-south-1.amazonaws.com/add-new-emp.png') no-repeat center;
+        }
+        .text{
+            position: absolute;
+            padding-top: 5%;
+            padding-left: 2%;
+            font-weight: bolder;
+
+          }
+
+      select {
+        appearance: none;
+        /* outline: 0;  */
+        background: white;
+        width: 100%;
+        height: 100%;
+        border:1px solid #edf1f7;
+        border-radius:7px;
+        padding: 12px;
+        /* display: none; */
+
+    }
+    /* .add-button{
+        background-color: #5D38DB;
+        color: white;
+        width: 126.37px;
+        font-family: Open Sans, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 10px;
+        }
+    .delete-button{
+        background-color: red;
+        color: white;
+        width: 126.37px;
+        font-family: Open Sans, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 10px;
+        }
+    .submit-button{
+        background-color: blueviolet;
+        color: white;
+        width: 126.37px;
+        font-family: Open Sans, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    .next-button {
+      color: white;
+      width: 126.37px;
+      font-family: Open Sans, sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 10px;
+      background-color: blueviolet;
+    }
+    .prev-button {
+        color: white;
+        width: 126.37px;
+        font-family: Open Sans, sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 10px;
+        background-color: blueviolet;
+    } */
+    ::ng-deep .mat-card-title{
+        background-color:#a06ec9 !important;
+        color: white;
+        padding:10px !important;
+      }
+
+    ::ng-deep .mat-card{
+        padding:0 !important;
+    }
+    .pt-10 {
+        padding-top: 15px;
+    }
+    .post-joining-stepper{
+      background-color: blueviolet;
+    }
+
+    .button-holder{
+      text-align:center;
+      margin-top: 2rem;
+    }
+
+    .content{
+        background: #edf1f7;
+        height:fit-content;
+    }
+
+    .stepper-style{
+        margin-left:auto;
+        margin-right:auto;
+        max-width: 70rem;
+    }

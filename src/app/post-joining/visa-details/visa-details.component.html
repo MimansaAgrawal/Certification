@@ -1,0 +1,44 @@
+<form [formGroup]="bankDetailsForm">
+    <mat-card >
+      <mat-card-title class="mat-card-style">4) VISA Details</mat-card-title>
+  
+      <div class="row">
+          <div class="form-group  col-md-10">
+              <label class="required-field col-md-6" for="visaStatus"><b>Do You Have a Valid US VISA?
+                  </b></label>
+  
+              <mat-radio-group formControlName="visaStatus" id="visaStatus" class="form-control col-md-6 visa-radio">
+                  <mat-radio-button value="valid">Yes</mat-radio-button>
+                  <mat-radio-button value="invalid" [checked]="true">No</mat-radio-button>
+              </mat-radio-group>
+          </div>
+      </div>
+  
+      <div *ngIf="bankDetailsForm.value.visaStatus=='valid'">
+          <div class="row">
+  
+              <!-- Input field for marital status -->
+  
+              <div class="form-group col-md-4 offset-md-1 editText top-padding1 ml-1"  >
+                  <label class="required-field col-md-6" for="visaType"><b>VISA TYPE</b></label>
+
+                  <mat-select placeholder="Select VISA Type" formControlName="visaType" id="visaType" class="input-shadow input " >
+                    <mat-option *ngFor="let v of visaType" [value]="v">{{v}}</mat-option>
+                 
+                </mat-select>
+
+  
+              </div>
+          </div>
+      </div>
+    </mat-card>
+    <!-- <div class="center text-center pt-10">
+      <div>
+          <button class="btn btn-primary btn-lg prev-button mr-1" type="button"
+              (click)="prev()">PREVIOUS</button>
+          <button class="btn btn-secondary btn-lg next-button ml-1" type="button" [disabled]="true"
+              (click)="next()">NEXT</button>
+      </div>
+  </div> -->
+  </form>
+  
